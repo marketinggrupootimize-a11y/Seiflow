@@ -18,7 +18,7 @@
   --radius-2xl: 16px;
   --radius-3xl: 24px;
   --radius-4xl: 32px;
-  --nav-w: 64rem;
+  --nav-w: 56rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --sei: #233dff;
 
@@ -150,7 +150,7 @@ section[id] { scroll-margin-top: 108px; }
   top: 10px;
   left: 50%;
   transform: translateX(-50%) translateY(0);
-  width: min(var(--nav-w), calc(100% - 40px));
+  width: min(var(--nav-w), calc(100% - 120px));
   background: var(--frame);
   border-radius: 0 0 var(--radius-4xl) var(--radius-4xl);
   z-index: 80;
