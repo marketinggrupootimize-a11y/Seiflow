@@ -1298,7 +1298,13 @@ html:not(.dark) .shot--dark { display: none; }
   display: grid;
   place-items: center;
   font-size: 13px;
+  overflow: hidden;
   filter: grayscale(1);
+}
+.quotes__tab span img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .quotes__tab.is-active span { filter: none; }
 .quotes__tab svg {
