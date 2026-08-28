@@ -150,8 +150,7 @@ section[id] { scroll-margin-top: 108px; }
   top: 10px;
   left: 50%;
   transform: translateX(-50%) translateY(0);
-  width: 100%;
-  max-width: var(--nav-w);
+  width: min(var(--nav-w), calc(100% - 40px));
   background: var(--frame);
   border-radius: 0 0 var(--radius-4xl) var(--radius-4xl);
   z-index: 80;
@@ -317,7 +316,7 @@ html.dark .logo-img--white { display: block; }
     left: 0;
     right: 0;
     transform: none;
-    max-width: none;
+    width: 100%;
     border-radius: 0 0 var(--radius-4xl) var(--radius-4xl);
     animation: none;
   }
