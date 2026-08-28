@@ -216,6 +216,7 @@ html.dark .logo-img--white { display: block; }
   padding: 8px 16px;
   font-size: 14px;
   font-weight: 500;
+  white-space: nowrap;
   color: color-mix(in oklab, var(--foreground) 80%, transparent);
   border-radius: 999px;
   transition: background 0.2s, color 0.2s;
@@ -256,6 +257,7 @@ html.dark .logo-img--white { display: block; }
 .nav__signin {
   font-size: 14px;
   font-weight: 500;
+  white-space: nowrap;
   color: color-mix(in oklab, var(--foreground) 80%, transparent);
 }
 .nav__signin:hover { color: var(--foreground); }
@@ -300,8 +302,13 @@ html.dark .logo-img--white { display: block; }
   font-weight: 500;
 }
 
-@media (max-width: 1200px) {
-  .nav { max-width: 42rem; }
+@media (max-width: 1024px) and (min-width: 851px) {
+  .nav__bar { padding: 0 12px 0 16px; gap: 8px; }
+  .nav__links { gap: 0; }
+  .nav__link { padding: 8px 10px; font-size: 13px; }
+  .nav__actions { gap: 10px; }
+  .nav__signin { font-size: 13px; white-space: nowrap; }
+  .btn-split__label { padding: 10px 14px; font-size: 13px; white-space: nowrap; }
 }
 
 @media (max-width: 850px) {
@@ -345,6 +352,7 @@ html.dark .logo-img--white { display: block; }
   color: var(--background);
   font-size: 14px;
   font-weight: 500;
+  white-space: nowrap;
 }
 .btn-split__icon {
   position: relative;
