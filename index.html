@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <title>Seiflow — A IA educacional que atende, resolve e integra pelo WhatsApp</title>
+  <meta name="description" content="A Seiflow é a IA especializada em educação que conecta sua instituição de ensino ao aluno, ao responsável, ao candidato e ao lead pelo WhatsApp. Não é só um chatbot: entende, consulta e executa processos reais no seu ERP — acadêmico, financeiro, comercial e institucional.">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0a">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="site-frame site-frame--top" aria-hidden="true"></div>
+  <div class="site-frame site-frame--bottom" aria-hidden="true"></div>
+  <div class="site-frame site-frame--left" aria-hidden="true"></div>
+  <div class="site-frame site-frame--right" aria-hidden="true"></div>
+  <svg class="site-corner site-corner--top-left" width="50" height="50" viewBox="0 0 50 50" fill="none" aria-hidden="true"><path d="M5.50871e-06 0C-0.00788227 37.3001 8.99616 50.0116 50 50H5.50871e-06V0Z" fill="currentColor"/></svg>
+  <svg class="site-corner site-corner--top-right" width="50" height="50" viewBox="0 0 50 50" fill="none" aria-hidden="true"><path d="M5.50871e-06 0C-0.00788227 37.3001 8.99616 50.0116 50 50H5.50871e-06V0Z" fill="currentColor"/></svg>
+  <svg class="site-corner site-corner--bottom-left" width="50" height="50" viewBox="0 0 50 50" fill="none" aria-hidden="true"><path d="M5.50871e-06 0C-0.00788227 37.3001 8.99616 50.0116 50 50H5.50871e-06V0Z" fill="currentColor"/></svg>
+  <svg class="site-corner site-corner--bottom-right" width="50" height="50" viewBox="0 0 50 50" fill="none" aria-hidden="true"><path d="M5.50871e-06 0C-0.00788227 37.3001 8.99616 50.0116 50 50H5.50871e-06V0Z" fill="currentColor"/></svg>
+
+  <a href="#main-content" class="skip-to-content">Ir para o conteúdo</a>
+
+  <header class="nav" id="nav">
+    <div class="nav__bar">
+      <a href="#" class="logo" aria-label="Seiflow">
+        <img class="logo-img logo-img--dark" src="assets/logo-header-dark.png" alt="sei.flow">
+        <img class="logo-img logo-img--white" src="assets/logo-header-white.png" alt="sei.flow">
+      </a>
+
+      <nav class="nav__links" aria-label="Principal">
+        <div class="nav__drop">
+          <button class="nav__link" aria-expanded="false" aria-haspopup="true" data-drop="produto">
+            Produto
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav__menu" id="drop-produto" hidden>
+            <a href="#instituicao">Para a instituição</a>
+            <a href="#produto">O produto</a>
+            <a href="#sistema">Como funciona</a>
+            <a href="#agentes">Agentes da escola</a>
+          </div>
+        </div>
+        <div class="nav__drop">
+          <button class="nav__link" aria-expanded="false" aria-haspopup="true" data-drop="recursos">
+            Recursos
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav__menu" id="drop-recursos" hidden>
+            <a href="#ganhos">Antes e depois</a>
+            <a href="#faq">Objeções</a>
+            <a href="#planos">Planos</a>
+          </div>
+        </div>
+        <a class="nav__link" href="#planos">Planos</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a class="nav__signin" data-wa href="https://wa.me/556293481258">Falar com a equipe</a>
+        <a class="btn-split" data-wa href="https://wa.me/556293481258">
+          <span class="btn-split__accent"></span>
+          <span class="btn-split__label">Diagnóstico grátis</span>
+          <span class="btn-split__icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>
+          </span>
+        </a>
+      </div>
+
+      <button id="nav-toggle" class="nav__toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+    <svg class="nav__notch nav__notch--left" width="50" height="50" viewBox="0 0 50 50" fill="none" aria-hidden="true"><path d="M5.50871e-06 0C-0.00788227 37.3001 8.99616 50.0116 50 50H5.50871e-06V0Z" fill="currentColor"/></svg>
+    <svg class="nav__notch nav__notch--right" width="50" height="50" viewBox="0 0 50 50" fill="none" aria-hidden="true"><path d="M5.50871e-06 0C-0.00788227 37.3001 8.99616 50.0116 50 50H5.50871e-06V0Z" fill="currentColor"/></svg>
+
+    <div id="nav-drawer" class="nav__drawer" hidden>
+      <a href="#instituicao">Para a instituição</a>
+      <a href="#produto">O produto</a>
+      <a href="#agentes">Agentes da escola</a>
+      <a href="#sistema">Como funciona</a>
+      <a href="#planos">Planos</a>
+      <a href="#faq">Objeções</a>
+      <a data-wa href="#cta">Diagnóstico grátis</a>
+    </div>
+  </header>
+
+  <aside class="ai-chat" id="ai-chat">
+    <div class="ai-chat__panel" id="ai-chat-panel" hidden>
+      <div class="ai-chat__head">
+        <div class="ai-chat__head-title">
+          <span class="ai-chat__dot" aria-hidden="true"></span>
+          Assistente Seiflow
+        </div>
+        <button type="button" class="ai-chat__close" id="ai-chat-close" aria-label="Fechar chat">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="ai-chat__messages" id="ai-chat-messages" role="log" aria-live="polite">
+        <div class="ai-chat__msg ai-chat__msg--bot">Oi! Sou o assistente de IA do Seiflow. Pergunte sobre notas, boletos, matrícula ou planos.</div>
+      </div>
+      <form class="ai-chat__form" id="ai-chat-form">
+        <label class="sr-only" for="ai-chat-input">Digite sua dúvida</label>
+        <input id="ai-chat-input" type="text" placeholder="Digite sua dúvida..." autocomplete="off">
+        <button type="submit" aria-label="Enviar mensagem">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <button type="button" class="ai-chat__toggle" id="ai-chat-toggle" aria-label="Tirar dúvidas com a IA do Seiflow" aria-expanded="false" aria-controls="ai-chat-panel">
+      <span class="ai-chat__hint" id="ai-chat-hint">Tire suas dúvidas com a nossa IA</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </button>
+  </aside>
+
+  <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
+    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <canvas class="blob-scene" data-blob="hero"></canvas>
+      </div>
+      <div class="hero__glyphs" aria-hidden="true">
+        <svg class="g g--cap" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 9.5 12 5l9 4.5-9 4.5L3 9.5Z"/><path d="M7 12v4.2c0 .9 2.2 2.3 5 2.3s5-1.4 5-2.3V12"/><path d="M21 10.2V16"/></svg>
+        <svg class="g g--school" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/><path d="M12 5V3"/></svg>
+        <svg class="g g--book" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+      <div class="hero__copy">
+        <div class="badge reveal">Instituição de ensino <span>✦</span></div>
+        <h1>
+          <span class="reveal">SEIFLOW a IA educacional</span>
+          <span class="reveal">que <em>atende, resolve e executa</em>.</span>
+        </h1>
+        <p class="reveal">Vai muito além do chatbot tradicional. A Seiflow entende a solicitação, consulta a base da instituição e conecta-se ao seu ERP para executar o processo de verdade.</p>
+        <ul class="hero__for reveal" aria-label="Quem usa na instituição">
+          <li>Secretaria acadêmica</li>
+          <li>Financeiro</li>
+          <li>Comercial e captação</li>
+          <li>Direção</li>
+        </ul>
+        <a class="btn-split btn-split--lg reveal" data-wa href="#cta">
+          <span class="btn-split__accent"></span>
+          <span class="btn-split__label">Quero o diagnóstico</span>
+          <span class="btn-split__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="hero__shot reveal-up">
+        <div class="hero__shot-frame">
+          <img class="shot shot--light" src="assets/dash-light.png" alt="Painel Seiflow: fila de conversas no WhatsApp, handoff humano e contexto da IA">
+          <img class="shot shot--dark" src="assets/dash-dark.png" alt="">
+        </div>
+      </div>
+
+      <div class="marquee reveal" aria-label="O que a IA resolve">
+        <div class="marquee__track">
+          <ul>
+            <li>Secretaria digital</li>
+            <li>Notas e boletim</li>
+            <li>Boletos e PIX</li>
+            <li>Matrícula</li>
+            <li>Processo seletivo</li>
+            <li>Responsável</li>
+            <li>Candidatos e leads</li>
+            <li>Regulamento</li>
+            <li>Integração com o ERP</li>
+            <li>Captação e comercial</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li>Secretaria digital</li>
+            <li>Notas e boletim</li>
+            <li>Boletos e PIX</li>
+            <li>Matrícula</li>
+            <li>Processo seletivo</li>
+            <li>Responsável</li>
+            <li>Candidatos e leads</li>
+            <li>Regulamento</li>
+            <li>Integração com o ERP</li>
+            <li>Captação e comercial</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="campus-rail" aria-label="A instituição de ensino">
+      <figure class="anim" style="--d:0">
+        <img src="assets/vis-escola.jpg" alt="Fachada de campus escolar com pátio e bandeira do Brasil">
+        <figcaption>Campus</figcaption>
+      </figure>
+      <figure class="anim" style="--d:1">
+        <img src="assets/vis-secretaria.jpg" alt="Secretaria acadêmica atendendo no computador">
+        <figcaption>Secretaria</figcaption>
+      </figure>
+      <figure class="anim" style="--d:2">
+        <img src="assets/vis-aula.jpg" alt="Sala de aula de instituição de ensino">
+        <figcaption>Sala de aula</figcaption>
+      </figure>
+      <figure class="anim" style="--d:3">
+        <img src="assets/vis-faculdade.jpg" alt="Pátio de faculdade com alunos">
+        <figcaption>Faculdade</figcaption>
+      </figure>
+    </section>
+
+    <section class="statement">
+      <p class="statement__text" id="statement-text">
+        Atendimento inteligente 24 horas por dia, 7 dias por semana. Uma IA conectada à sua instituição, que atende e executa com segurança os processos do dia a dia.
+      </p>
+    </section>
+
+    <section class="edu-moment">
+      <div class="wrap">
+        <figure class="edu-moment__frame anim">
+          <img src="assets/scene-completo.png" alt="Aluna no WhatsApp com o assistente Seiflow e capelo de formatura">
+        </figure>
+      </div>
+    </section>
+
+    <section id="instituicao" class="forwho">
+      <div class="wrap">
+        <p class="eyebrow">Especializada em educação — não uma IA genérica</p>
+        <h2 class="anim">Uma IA educacional, conectada ao ecossistema de gestão da instituição.</h2>
+        <div class="forwho__grid">
+          <article class="anim" style="--d:0">
+            <img src="assets/vis-escola.jpg" alt="">
+            <h3>Educação básica</h3>
+            <p>Secretaria, responsável, matrícula, calendário e mensalidade — o WhatsApp da escola deixa de ser plantão improvisado.</p>
+          </article>
+          <article class="anim" style="--d:1">
+            <img src="assets/vis-faculdade.jpg" alt="">
+            <h3>Faculdades e centros</h3>
+            <p>Notas, boletim, processo seletivo e estágio — com a base acadêmica da casa.</p>
+          </article>
+          <article class="anim" style="--d:2">
+            <img src="assets/vis-rede.jpg" alt="">
+            <h3>Redes e multi-unidade</h3>
+            <p>Cada unidade isolada, com a mesma operação. A direção vê volume, fila e custo — sem misturar dados.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="produto" class="bento">
+      <div class="bento__grid">
+        <article class="card card--brand card--wide anim" style="--d:0">
+          <div class="card__copy">
+            <h3>A secretaria vê a fila da escola</h3>
+            <p>Conversas de aluno e responsável, o que a IA já respondeu e quando assumir — com contexto, sem o celular da equipe.</p>
+          </div>
+          <figure class="dash-card">
+            <img class="shot shot--light" src="assets/dash-light.png" alt="Inbox Seiflow: conversas atribuídas, não atribuídas e resposta da IA sobre estágio supervisionado">
+            <img class="shot shot--dark" src="assets/dash-dark.png" alt="">
+          </figure>
+        </article>
+
+        <article class="card card--brand card--phone anim" style="--d:1">
+          <div class="card__copy">
+            <h3>Não é só resposta. É execução.</h3>
+            <p>Notas, 2ª via de boleto, status de matrícula — direto no ERP, no tom da instituição, em segundos.</p>
+          </div>
+          <div class="phone-wrap">
+            <div class="rings" aria-hidden="true"><span></span><span></span><span></span></div>
+            <figure class="phone phone--shot">
+              <img src="assets/chat-notas-2.jpg" alt="Conversa no WhatsApp: IA Educacional entrega tabela de notas e média do semestre">
+            </figure>
+          </div>
+        </article>
+
+        <div class="bento__pair">
+          <article class="card card--mint anim" style="--d:2">
+            <h3>Uma IA.</h3>
+            <h3>Toda a jornada da instituição.</h3>
+            <div class="avatars">
+              <span>AC</span>
+              <span>FI</span>
+              <span>IN</span>
+              <span>CO</span>
+              <span class="avatars__more">+</span>
+            </div>
+            <p class="card__meta">Acadêmico · Financeiro · Institucional · Comercial</p>
+          </article>
+
+          <article class="card card--brand anim" style="--d:3">
+            <h3>Menos fila. Mais capacidade.</h3>
+            <p>A IA resolve o repetitivo e antecipa o financeiro. A equipe fica com o sensível — matrícula, exceção, empatia — com o contexto completo.</p>
+            <div class="metrics">
+              <div><span>− Fila da secretaria</span><b>+ aluno atendido</b></div>
+              <div><span>− Copia e cola</span><b>+ escala 24/7</b></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quotes" id="ganhos">
+      <div class="wrap">
+        <h2 class="anim">A secretaria não falha por falta de esforço.</h2>
+        <div class="quotes__grid">
+          <div class="quotes__tabs" role="tablist" aria-label="A dor da instituição">
+            <button class="quotes__tab is-active" role="tab" aria-selected="true" data-quote="0" style="--ring:#233DFF" title="Aluno e responsável">
+              <span>AL</span>
+              <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/><circle class="quotes__progress" cx="50" cy="50" r="48"/></svg>
+            </button>
+            <button class="quotes__tab" role="tab" aria-selected="false" data-quote="1" style="--ring:#7cb8ff" title="Secretaria acadêmica">
+              <span>SE</span>
+              <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/><circle class="quotes__progress" cx="50" cy="50" r="48"/></svg>
+            </button>
+            <button class="quotes__tab" role="tab" aria-selected="false" data-quote="2" style="--ring:#f0b429" title="Direção e gestão">
+              <span>DI</span>
+              <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/><circle class="quotes__progress" cx="50" cy="50" r="48"/></svg>
+            </button>
+            <button class="quotes__tab" role="tab" aria-selected="false" data-quote="3" style="--ring:#c084fc" title="Equipe da instituição">
+              <span>EQ</span>
+              <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48"/><circle class="quotes__progress" cx="50" cy="50" r="48"/></svg>
+            </button>
+          </div>
+          <figure class="quotes__body anim">
+            <blockquote id="quote-text">“O aluno pergunta no WhatsApp. A secretaria responde quando dá. A experiência da instituição começa a falhar em silêncio.”</blockquote>
+            <figcaption id="quote-by">Aluno e responsável · no WhatsApp da escola, 24 horas</figcaption>
+          </figure>
+        </div>
+        <div class="quotes__logos">
+          <span>Secretaria</span>
+          <span>Responsável</span>
+          <span>Captação</span>
+          <span>Direção</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="sistema" class="how">
+      <div class="wrap how__grid">
+        <div class="how__intro anim">
+          <h2>Da pergunta à execução, no WhatsApp.</h2>
+          <p>Não é menu de chatbot. A IA interpreta a solicitação, consulta a base da instituição e executa no ERP — ou transfere para a equipe certa, com o histórico.</p>
+          <a class="btn-dark" data-wa href="#cta">Agendar diagnóstico</a>
+        </div>
+        <div class="how__track">
+        <span class="how__line" aria-hidden="true"><span class="how__fill" id="how-fill"></span></span>
+        <ol class="how__steps">
+          <li>
+            <i>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18m-9 6 2 2 4-4"/></svg>
+            </i>
+            <div>
+              <h3>Entende a solicitação</h3>
+              <p>Interpreta o que aluno, responsável ou candidato quer — notas, boleto, matrícula, curso — em linguagem natural.</p>
+            </div>
+          </li>
+          <li>
+            <i>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </i>
+            <div>
+              <h3>Consulta a base e o ERP</h3>
+              <p>Busca em documentos oficiais da casa e acessa o ERP quando o caso exige. Nada inventado.</p>
+            </div>
+          </li>
+          <li>
+            <i>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+            </i>
+            <div>
+              <h3>Executa ou chama a equipe</h3>
+              <p>Fecha sozinha o que dá — inclusive gerando 2ª via ou orientando matrícula. O que pede empatia sobe para a equipe com o histórico.</p>
+            </div>
+          </li>
+        </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="agentes" class="agents">
+      <div class="wrap">
+        <p class="eyebrow">Agentes da instituição</p>
+        <h2 class="anim">Uma IA. Quatro áreas da instituição.</h2>
+        <p class="lede">Cada agente cobre uma função da instituição — treinado na casa e conectado ao ERP.</p>
+        <div class="agents__grid">
+          <article class="agent anim" style="--d:0">
+            <span class="agent__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9.5 12 5l9 4.5-9 4.5L3 9.5Z"/><path d="M7 12v4.2c0 .9 2.2 2.3 5 2.3s5-1.4 5-2.3V12"/><path d="M21 10.2V16"/></svg>
+            </span>
+            <h3>Acadêmico</h3>
+            <p>Curso, calendário, matrícula, notas, boletim e procedimentos pedagógicos.</p>
+            <p class="agent__ex">“Quando sai o boletim?”</p>
+          </article>
+          <article class="agent anim" style="--d:1">
+            <span class="agent__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><circle cx="16" cy="14" r="1.2"/></svg>
+            </span>
+            <h3>Financeiro</h3>
+            <p>Boletos, PIX, renegociação e status de pagamento — avisando o vencimento antes de perguntarem.</p>
+            <p class="agent__ex">“Cadê o boleto deste mês?”</p>
+          </article>
+          <article class="agent anim" style="--d:2">
+            <span class="agent__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/><path d="M12 5V3"/></svg>
+            </span>
+            <h3>Institucional</h3>
+            <p>Regulamentos, políticas, horários da secretaria, estrutura e informações gerais.</p>
+            <p class="agent__ex">“Qual o horário da secretaria?”</p>
+          </article>
+          <article class="agent anim" style="--d:3">
+            <span class="agent__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 11 19-5-8 16-2-7-9-4Z"/><path d="m14 15 2 6"/></svg>
+            </span>
+            <h3>Comercial e captação</h3>
+            <p>Do primeiro contato à matrícula: cursos, valores, processo seletivo e qualificação do lead.</p>
+            <p class="agent__ex">“Quanto custa o curso de Administração?”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof">
+      <div class="wrap proof__grid">
+        <figure class="proof__chat anim">
+          <img src="assets/chat-notas-1.jpg" alt="IA Educacional no WhatsApp listando notas do semestre e média geral 8,08">
+        </figure>
+        <div class="proof__copy anim">
+          <p class="eyebrow">Prova no WhatsApp da instituição</p>
+          <h2>O aluno pede as notas. A instituição entrega — direto no ERP.</h2>
+          <p>Resposta no tom da casa, na hora, sem copiar e colar. O que exige gente sobe com o histórico — a direção acompanha tudo no painel.</p>
+          <ul class="proof__list">
+            <li>Canal: WhatsApp onde aluno, responsável e candidato já estão</li>
+            <li>Inteligência: IA especializada em educação, não genérica</li>
+            <li>Conhecimento: documentos oficiais da instituição</li>
+            <li>Execução: integrada ao ERP da instituição</li>
+            <li>Humano: a equipe assume o que é sensível</li>
+            <li>Gestão: fila, volume e custo visíveis</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="planos" class="pricing">
+      <div class="wrap">
+        <p class="eyebrow">Investimento</p>
+        <h2 class="anim">Você não está comprando IA. Está comprando tempo.</h2>
+        <p class="lede">Por unidade de ensino. Créditos de WhatsApp e IA, agentes especializados e 1&nbsp;GB no repositório. Mensalidade só entra após os bônus ou em 30 dias.</p>
+        <div class="plans">
+          <article class="plan anim" style="--d:0">
+            <h3>Start</h3>
+            <div class="plan__price">R$&nbsp;999<span>/mês</span></div>
+            <p>2 números WhatsApp da instituição</p>
+            <a class="plan__cta" data-wa href="https://wa.me/556293481258">Começar</a>
+            <p class="plan__inc">Inclui:</p>
+            <ul>
+              <li>250 créditos de atendimento WhatsApp</li>
+              <li>250 créditos de uso de IA</li>
+              <li>Agentes especializados</li>
+              <li>Suporte online</li>
+              <li>1&nbsp;GB no repositório de conhecimento</li>
+              <li>250 créditos bônus WhatsApp grátis (30 dias)</li>
+              <li>250 créditos bônus de IA grátis (30 dias)</li>
+            </ul>
+          </article>
+          <article class="plan plan--hot anim" style="--d:1">
+            <div class="plan__badge">Recomendado</div>
+            <h3>Standard</h3>
+            <div class="plan__price">R$&nbsp;1.499<span>/mês</span></div>
+            <p>2 números WhatsApp da instituição</p>
+            <a class="plan__cta plan__cta--dark" data-wa href="https://wa.me/556293481258">Plano recomendado</a>
+            <p class="plan__inc">Inclui:</p>
+            <ul>
+              <li>375 créditos de atendimento WhatsApp</li>
+              <li>375 créditos de uso de IA</li>
+              <li>Agentes especializados</li>
+              <li>Suporte online</li>
+              <li>1&nbsp;GB no repositório de conhecimento</li>
+              <li>375 créditos bônus WhatsApp grátis (30 dias)</li>
+              <li>375 créditos bônus de IA grátis (30 dias)</li>
+            </ul>
+          </article>
+          <article class="plan anim" style="--d:2">
+            <h3>Ultra</h3>
+            <div class="plan__price">R$&nbsp;3.499<span>/mês</span></div>
+            <p>2 números WhatsApp · redes de ensino</p>
+            <a class="plan__cta" data-wa href="https://wa.me/556293481258">Falar da rede</a>
+            <p class="plan__inc">Inclui:</p>
+            <ul>
+              <li>750 créditos de atendimento WhatsApp</li>
+              <li>750 créditos de uso de IA</li>
+              <li>Agentes especializados</li>
+              <li>Suporte online</li>
+              <li>1&nbsp;GB no repositório de conhecimento</li>
+              <li>750 créditos bônus WhatsApp grátis (30 dias)</li>
+              <li>750 créditos bônus de IA grátis (30 dias)</li>
+            </ul>
+          </article>
+        </div>
+        <p class="pricing__note">A cobrança da mensalidade ocorre após o consumo dos créditos bônus ou em 30 dias. Setup inicial a partir de R$&nbsp;5.250, conforme volume e complexidade. O piloto começa em uma unidade, uma fila da secretaria, uma meta.</p>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <div class="wrap faq__grid">
+        <div class="faq__intro anim">
+          <p class="eyebrow">Perguntas frequentes</p>
+          <h2>O que a diretoria da instituição já está pensando</h2>
+          <p>A pergunta não é quanto custa o Seiflow. É quanto custa a fila da secretaria continuar do jeito antigo.</p>
+          <div class="faq__actions">
+            <a class="btn-dark" data-wa href="#cta">Quero o diagnóstico</a>
+            <a class="btn-ghost" data-wa href="https://wa.me/556293481258">Falar com suporte</a>
+          </div>
+        </div>
+        <div class="faq__list" role="list">
+          <article class="faq__item is-open anim" role="button" tabindex="0" aria-expanded="true">
+            <div class="faq__q">Serve para escola e faculdade?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+            <p>Sim. Educação básica, faculdades e redes. O piloto começa em uma unidade, uma fila — secretaria, financeiro ou captação — e uma meta de primeira resposta.</p>
+          </article>
+          <article class="faq__item anim" role="button" tabindex="0" aria-expanded="false">
+            <div class="faq__q">IA é um risco para a instituição.<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+            <p>O risco real é a fila da secretaria sem padrão. A IA opera só na base oficial da casa, com handoff humano e log completo — reduz erro de cansaço da equipe.</p>
+          </article>
+          <article class="faq__item anim" role="button" tabindex="0" aria-expanded="false">
+            <div class="faq__q">Já temos um chatbot / WhatsApp.<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+            <p>Ter WhatsApp ou um chatbot de menu é diferente de ter uma IA educacional conectada à gestão da instituição. A Seiflow entende linguagem natural e executa no ERP.</p>
+          </article>
+          <article class="faq__item anim" role="button" tabindex="0" aria-expanded="false">
+            <div class="faq__q">A IA só responde perguntas?<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+            <p>Não. Integrada ao ERP, ela também executa: emite 2ª via, orienta matrícula e avisa vencimentos antes de perguntarem.</p>
+          </article>
+          <article class="faq__item anim" role="button" tabindex="0" aria-expanded="false">
+            <div class="faq__q">Vamos desenvolver internamente.<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+            <p>Compare o custo de construir internamente com um piloto em 30 dias na secretaria: WhatsApp oficial, agentes da escola e fatura pronta.</p>
+          </article>
+          <article class="faq__item anim" role="button" tabindex="0" aria-expanded="false">
+            <div class="faq__q">Não temos orçamento.<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+            <p>A instituição já paga com a jornada da secretaria. No Seiflow o custo é visível, por crédito, e só sobe com uso efetivo. Start a partir de R$ 999/mês por unidade.</p>
+          </article>
+          <article class="faq__item anim" role="button" tabindex="0" aria-expanded="false">
+            <div class="faq__q">LGPD e dados de alunos.<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+            <p>Isolamento por unidade, papéis de acesso e rastro de uso. TI entra no desenho de permissões no primeiro dia do piloto.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="cta">
+    <div class="footer__cta">
+      <div class="footer__cta-bg" aria-hidden="true">
+        <canvas class="blob-scene" data-blob="cta"></canvas>
+      </div>
+      <div class="footer__cta-inner">
+        <h2>Vamos colocar a IA da sua instituição para trabalhar?</h2>
+        <form class="footer__form" id="cta-form">
+          <label class="sr-only" for="cta-email">E-mail institucional</label>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          <input id="cta-email" type="email" placeholder="E-mail institucional" required>
+          <button type="submit">Quero o diagnóstico
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer__base">
+      <div class="wrap footer__row">
+        <a href="#" class="logo logo--on-accent">
+          <img class="logo-img logo-img--white" src="assets/logo-footer-white.png" alt="sei.flow">
+        </a>
+        <nav class="footer__nav" aria-label="Rodapé">
+          <div>
+            <h3>Produto</h3>
+            <ul>
+              <li><a href="#produto">O produto</a></li>
+              <li><a href="#instituicao">Para a instituição</a></li>
+              <li><a href="#agentes">Agentes da escola</a></li>
+              <li><a href="#sistema">Como funciona</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Instituição</h3>
+            <ul>
+              <li><a href="#planos">Planos</a></li>
+              <li><a href="#faq">Objeções</a></li>
+              <li><a href="#cta">Diagnóstico</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="#">Termos</a></li>
+              <li><a href="#">Privacidade</a></li>
+              <li><a href="#">LGPD</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="wrap footer__legal">
+        <span>© 2026 Seiflow. IA educacional para instituições de ensino.</span>
+        <span>Conformidade LGPD · WhatsApp Meta API</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
