@@ -847,6 +847,7 @@ html:not(.dark) .shot--dark { display: none; }
     width: 100%;
   }
   .hero h1 { font-size: clamp(22px, 7.5vw, 34px); }
+  .hero h1 > span { white-space: normal; }
   .hero__for { justify-content: flex-start; }
   .hero__shot { margin-top: 40px; }
   .marquee { padding: 56px 0 32px; }
