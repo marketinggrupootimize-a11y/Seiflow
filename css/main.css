@@ -1663,6 +1663,7 @@ td:last-child { color: var(--foreground); font-weight: 600; }
   margin-bottom: 10px;
 }
 .plan > p { margin: 8px 0 0; font-size: 14px; color: var(--muted-foreground); }
+.plan__students { font-weight: 600; color: var(--foreground) !important; }
 .plan__cta {
   display: block;
   margin-top: 24px;
