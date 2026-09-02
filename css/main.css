@@ -230,13 +230,29 @@ html.dark .logo-img--white { display: block; }
   padding: 8px;
   width: 36px;
   height: 36px;
+  border-radius: 50%;
   justify-content: center;
-  color: var(--card-primary);
+  color: #fff;
+  background: var(--card-primary);
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--card-primary) 45%, transparent);
+  animation: login-pulse 2.6s ease-in-out infinite;
+  transition: transform 0.25s var(--ease, ease), background 0.2s;
 }
-.nav__link--icon:hover,
+.nav__link--icon svg { transition: transform 0.3s var(--ease, ease); }
+.nav__link--icon:hover {
+  background: color-mix(in oklab, var(--card-primary) 85%, black);
+  transform: translateY(-2px);
+}
+.nav__link--icon:hover svg { transform: rotate(-8deg) scale(1.08); }
 .nav__drop.is-open .nav__link--icon {
-  color: var(--card-primary);
-  background: color-mix(in oklab, var(--card-primary) 12%, transparent);
+  color: #fff;
+  background: color-mix(in oklab, var(--card-primary) 85%, black);
+  animation-play-state: paused;
+}
+
+@keyframes login-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--card-primary) 45%, transparent); }
+  50% { box-shadow: 0 0 0 8px color-mix(in oklab, var(--card-primary) 0%, transparent); }
 }
 
 .nav__drop { position: relative; }
