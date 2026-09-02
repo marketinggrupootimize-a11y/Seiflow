@@ -431,6 +431,81 @@ function paintBlob(canvas, key) {
   requestAnimationFrame(frame);
 }
 
+const forwhoItems = [
+  {
+    title: "Educação básica",
+    text: "Secretaria, responsável, matrícula, calendário e mensalidade — o WhatsApp da escola deixa de ser plantão improvisado.",
+  },
+  {
+    title: "Faculdades e centros",
+    text: "Notas, boletim, processo seletivo e estágio — com a base acadêmica da casa.",
+  },
+  {
+    title: "Redes e multi-unidade",
+    text: "Cada unidade isolada, com a mesma operação. A direção vê volume, fila e custo — sem misturar dados.",
+  },
+];
+
+function initForwhoCarousel() {
+  const ring = $("#forwho-ring");
+  const caption = $("#forwho-caption");
+  const dots = $$("#forwho-dots button");
+  const particlesHost = $("#forwho-particles");
+  if (!ring || !caption || !dots.length) return;
+
+  if (particlesHost) {
+    const count = 22;
+    let html = "";
+    for (let n = 0; n < count; n++) {
+      const x = Math.random() * 100;
+      const y = 40 + Math.random() * 40;
+      const size = 2 + Math.random() * 3;
+      const dur = 4 + Math.random() * 4;
+      const delay = Math.random() * 6;
+      html += `<span style="--x:${x}%;--y:${y}%;--s:${size}px;--dur:${dur}s;--delay:${delay}s"></span>`;
+    }
+    particlesHost.innerHTML = html;
+  }
+
+  let index = 0;
+  let timer = null;
+  const reduced = prefersReduced();
+
+  function show(i) {
+    index = (i + forwhoItems.length) % forwhoItems.length;
+    dots.forEach((d, n) => {
+      const on = n === index;
+      d.classList.toggle("is-active", on);
+      d.setAttribute("aria-selected", String(on));
+    });
+    caption.style.opacity = "0";
+    window.setTimeout(() => {
+      caption.querySelector("h3").textContent = forwhoItems[index].title;
+      caption.querySelector("p").textContent = forwhoItems[index].text;
+      caption.style.opacity = "1";
+    }, 180);
+    if (!reduced) ring.style.animation = "none";
+    ring.style.transform = `rotateY(${index * -120}deg)`;
+  }
+
+  function restart() {
+    if (reduced) return;
+    window.clearInterval(timer);
+    timer = window.setInterval(() => show(index + 1), 4000);
+  }
+
+  dots.forEach((d) => {
+    d.addEventListener("click", () => {
+      show(Number(d.dataset.index));
+      restart();
+    });
+  });
+
+  caption.style.transition = "opacity 0.18s ease";
+  show(0);
+  restart();
+}
+
 function initBlob() {
   if (prefersReduced()) return;
   $$("[data-blob]").forEach((canvas) => {
@@ -595,6 +670,7 @@ function boot() {
   initChrome();
   initNav();
   initQuotes();
+  initForwhoCarousel();
   initFaq();
   initShot();
   initMotion();

@@ -228,22 +228,35 @@
       <div class="wrap">
         <p class="eyebrow">Especializada em educação — não uma IA genérica</p>
         <h2 class="anim">Uma IA educacional, conectada ao ecossistema de gestão da instituição.</h2>
-        <div class="forwho__grid">
-          <article class="anim" style="--d:0">
-            <img src="assets/vis-escola.jpg" alt="">
-            <h3>Educação básica</h3>
-            <p>Secretaria, responsável, matrícula, calendário e mensalidade — o WhatsApp da escola deixa de ser plantão improvisado.</p>
-          </article>
-          <article class="anim" style="--d:1">
-            <img src="assets/vis-faculdade.jpg" alt="">
-            <h3>Faculdades e centros</h3>
-            <p>Notas, boletim, processo seletivo e estágio — com a base acadêmica da casa.</p>
-          </article>
-          <article class="anim" style="--d:2">
-            <img src="assets/vis-rede.jpg" alt="">
-            <h3>Redes e multi-unidade</h3>
-            <p>Cada unidade isolada, com a mesma operação. A direção vê volume, fila e custo — sem misturar dados.</p>
-          </article>
+      </div>
+
+      <div class="forwho__stage">
+        <div class="forwho__glow" aria-hidden="true"></div>
+        <div class="forwho__particles" id="forwho-particles" aria-hidden="true"></div>
+
+        <div class="forwho__carousel">
+          <div class="forwho__ring" id="forwho-ring">
+            <article class="forwho__card" data-index="0" style="--i:0">
+              <img src="assets/vis-escola.jpg" alt="Fachada de campus escolar com pátio e bandeira do Brasil">
+            </article>
+            <article class="forwho__card" data-index="1" style="--i:1">
+              <img src="assets/vis-faculdade.jpg" alt="Pátio de faculdade com alunos">
+            </article>
+            <article class="forwho__card" data-index="2" style="--i:2">
+              <img src="assets/vis-rede.jpg" alt="Rede de unidades de ensino">
+            </article>
+          </div>
+        </div>
+
+        <div class="forwho__caption" id="forwho-caption">
+          <h3>Educação básica</h3>
+          <p>Secretaria, responsável, matrícula, calendário e mensalidade — o WhatsApp da escola deixa de ser plantão improvisado.</p>
+        </div>
+
+        <div class="forwho__dots" id="forwho-dots" role="tablist" aria-label="Segmento da instituição">
+          <button type="button" class="is-active" data-index="0" role="tab" aria-selected="true" aria-label="Educação básica"></button>
+          <button type="button" data-index="1" role="tab" aria-selected="false" aria-label="Faculdades e centros"></button>
+          <button type="button" data-index="2" role="tab" aria-selected="false" aria-label="Redes e multi-unidade"></button>
         </div>
       </div>
     </section>

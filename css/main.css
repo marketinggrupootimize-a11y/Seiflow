@@ -1066,41 +1066,167 @@ html:not(.dark) .shot--dark { display: none; }
   letter-spacing: -0.04em;
   line-height: 1.15;
 }
-.forwho__grid {
-  display: grid;
-  gap: 12px;
-  margin-top: 24px;
-}
-@media (min-width: 800px) {
-  .forwho__grid { grid-template-columns: repeat(3, 1fr); }
-}
-.forwho article {
-  background: var(--frame);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 0 0 20px;
+
+/* ===== Hero-7-style 3D rotating carousel (glow bar + particles) ===== */
+.forwho__stage {
+  position: relative;
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px 16px;
   overflow: hidden;
 }
-.forwho article img {
+
+.forwho__glow {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  width: min(920px, 92vw);
+  height: 120px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(90deg,
+    transparent,
+    color-mix(in oklab, var(--card-primary) 70%, transparent) 25%,
+    color-mix(in oklab, var(--card-primary) 95%, #7cb8ff 30%) 50%,
+    color-mix(in oklab, var(--card-primary) 70%, transparent) 75%,
+    transparent);
+  filter: blur(48px);
+  opacity: 0.55;
+  animation: forwho-glow 5s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+@keyframes forwho-glow {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scaleX(0.94); }
+  50% { opacity: 0.7; transform: translate(-50%, -50%) scaleX(1.04); }
+}
+
+.forwho__particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.forwho__particles span {
+  position: absolute;
+  width: var(--s, 4px);
+  height: var(--s, 4px);
+  border-radius: 50%;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  background: color-mix(in oklab, var(--card-primary) 80%, #fff 20%);
+  opacity: 0;
+  animation: forwho-particle var(--dur, 6s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes forwho-particle {
+  0% { opacity: 0; transform: translateY(0) scale(0.6); }
+  15% { opacity: 0.85; }
+  50% { transform: translateY(-34px) scale(1); }
+  85% { opacity: 0.5; }
+  100% { opacity: 0; transform: translateY(-70px) scale(0.5); }
+}
+
+.forwho__carousel {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  height: 168px;
+  max-width: 620px;
+  height: 300px;
+  perspective: 1400px;
+}
+.forwho__ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: forwho-spin 16s linear infinite;
+  transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.forwho__carousel:hover .forwho__ring,
+.forwho__carousel:focus-within .forwho__ring {
+  animation-play-state: paused;
+}
+@keyframes forwho-spin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(-360deg); }
+}
+
+.forwho__card {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 220px;
+  height: 268px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--card-primary) 35%, var(--border));
+  box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.45), 0 0 40px -12px color-mix(in oklab, var(--card-primary) 55%, transparent);
+  transform: rotateY(calc(var(--i) * 120deg)) translateZ(300px);
+  backface-visibility: hidden;
+}
+.forwho__card img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
-  margin-bottom: 16px;
-  will-change: transform;
 }
-.forwho h3 {
+.forwho__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgb(10 10 20 / 0.55) 100%);
+}
+
+.forwho__caption {
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+  max-width: 34rem;
+  text-align: center;
+  min-height: 92px;
+}
+.forwho__caption h3 {
   margin: 0 0 8px;
-  padding: 0 22px;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
 }
-.forwho p {
+.forwho__caption p {
   margin: 0;
-  padding: 0 22px;
   color: var(--muted-foreground);
   font-size: 14.5px;
-  line-height: 1.5;
+  line-height: 1.55;
+}
+
+.forwho__dots {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+.forwho__dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.25s, transform 0.25s;
+}
+.forwho__dots button.is-active {
+  background: var(--card-primary);
+  transform: scale(1.3);
+}
+
+@media (max-width: 640px) {
+  .forwho__carousel { height: 220px; }
+  .forwho__card { width: 160px; height: 196px; transform: rotateY(calc(var(--i) * 120deg)) translateZ(200px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forwho__ring { animation: none; transform: rotateY(0deg); }
+  .forwho__glow { animation: none; }
+  .forwho__particles { display: none; }
 }
 
 /* ========== BENTO ========== */
