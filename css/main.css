@@ -1042,6 +1042,17 @@ html:not(.dark) .shot--dark { display: none; }
   will-change: transform;
 }
 
+.edu-moment--full {
+  padding: 0;
+}
+.edu-moment--full .edu-moment__frame {
+  border-radius: 0;
+}
+.edu-moment--full .edu-moment__frame img {
+  max-height: 90vh;
+  object-fit: cover;
+}
+
 .forwho {
   padding: 8px 24px 40px;
   background: color-mix(in oklab, var(--background) 78%, transparent);
