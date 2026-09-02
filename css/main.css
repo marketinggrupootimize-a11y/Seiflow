@@ -231,6 +231,12 @@ html.dark .logo-img--white { display: block; }
   width: 36px;
   height: 36px;
   justify-content: center;
+  color: var(--card-primary);
+}
+.nav__link--icon:hover,
+.nav__drop.is-open .nav__link--icon {
+  color: var(--card-primary);
+  background: color-mix(in oklab, var(--card-primary) 12%, transparent);
 }
 
 .nav__drop { position: relative; }
