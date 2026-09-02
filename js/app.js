@@ -440,11 +440,8 @@ function initFloatCarousel() {
   let halfWidth = 0;
   let offset = 0;
   let hovering = false;
-  let dragging = false;
-  let dragStartX = 0;
-  let dragStartOffset = 0;
   let lastTime = null;
-  const driftSpeed = 26; // px per second, drifts left on its own
+  const driftSpeed = 34; // px per second — flui devagar para a esquerda sozinho
 
   function measure() {
     halfWidth = track.scrollWidth / 2;
@@ -465,9 +462,9 @@ function initFloatCarousel() {
 
   function frame(time) {
     if (lastTime === null) lastTime = time;
-    const dt = (time - lastTime) / 1000;
+    const dt = Math.min((time - lastTime) / 1000, 0.1);
     lastTime = time;
-    if (!reduced && !hovering && !dragging) {
+    if (!reduced && !hovering) {
       offset = wrap(offset + driftSpeed * dt);
       render();
     }
@@ -476,34 +473,7 @@ function initFloatCarousel() {
   requestAnimationFrame(frame);
 
   root.addEventListener("mouseenter", () => { hovering = true; });
-  root.addEventListener("mouseleave", () => { hovering = false; dragging = false; });
-
-  root.addEventListener(
-    "wheel",
-    (e) => {
-      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      offset = wrap(offset + delta);
-      render();
-      e.preventDefault();
-    },
-    { passive: false }
-  );
-
-  root.addEventListener("pointerdown", (e) => {
-    dragging = true;
-    root.classList.add("is-dragging");
-    dragStartX = e.clientX;
-    dragStartOffset = offset;
-    root.setPointerCapture(e.pointerId);
-  });
-  root.addEventListener("pointermove", (e) => {
-    if (!dragging) return;
-    offset = wrap(dragStartOffset - (e.clientX - dragStartX));
-    render();
-  });
-  const endDrag = () => { dragging = false; root.classList.remove("is-dragging"); };
-  root.addEventListener("pointerup", endDrag);
-  root.addEventListener("pointercancel", endDrag);
+  root.addEventListener("mouseleave", () => { hovering = false; });
 
   render();
 }

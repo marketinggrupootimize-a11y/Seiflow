@@ -1074,10 +1074,7 @@ html:not(.dark) .shot--dark { display: none; }
   background: radial-gradient(120% 140% at 20% 0%, #241512 0%, #0d0806 55%, #05030a 100%);
   padding: 72px 0;
   overflow: hidden;
-  cursor: grab;
-  touch-action: pan-y;
 }
-.gfloat.is-dragging { cursor: grabbing; }
 .gfloat__track {
   display: flex;
   gap: 28px;
