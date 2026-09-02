@@ -64,6 +64,23 @@
 
       <div class="nav__actions">
         <a class="nav__signin" data-wa href="https://wa.me/556293481258">Falar com a equipe</a>
+        <div class="nav__drop">
+          <button class="nav__link nav__link--icon" aria-expanded="false" aria-haspopup="true" aria-label="Login" data-drop="login">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </button>
+          <div class="nav__menu nav__menu--login" id="drop-login" hidden>
+            <p class="login-panel__title">Acesse sua conta</p>
+            <p class="login-panel__sub">Entre para gerenciar sua instituição na Seiflow.</p>
+            <form class="login-panel__form" id="login-form">
+              <label class="sr-only" for="login-email">E-mail</label>
+              <input id="login-email" type="email" placeholder="voce@instituicao.com" autocomplete="email" required>
+              <label class="sr-only" for="login-password">Senha</label>
+              <input id="login-password" type="password" placeholder="Senha" autocomplete="current-password" required>
+              <button type="submit" class="login-panel__submit">Entrar</button>
+            </form>
+            <a href="#cta" class="login-panel__link">Ainda não tem acesso? Fale com a gente</a>
+          </div>
+        </div>
         <a class="btn-split" data-wa href="https://wa.me/556293481258">
           <span class="btn-split__accent"></span>
           <span class="btn-split__label">Diagnóstico grátis</span>
@@ -88,6 +105,7 @@
       <a href="#planos">Planos</a>
       <a href="#faq">Objeções</a>
       <a data-wa href="#cta">Diagnóstico grátis</a>
+      <a href="#cta">Login</a>
     </div>
   </header>
 

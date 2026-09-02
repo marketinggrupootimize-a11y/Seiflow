@@ -50,6 +50,14 @@ function initChrome() {
     const email = $("#cta-email")?.value.trim();
     window.open(waUrl(email), "_blank", "noopener");
   });
+
+  const loginForm = $("#login-form");
+  loginForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = $("#login-email")?.value.trim();
+    // TODO: integrar com o backend de autenticação
+    console.log("Tentativa de login:", email);
+  });
 }
 
 function initNav() {
