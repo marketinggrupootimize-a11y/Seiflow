@@ -1066,73 +1066,41 @@ html:not(.dark) .shot--dark { display: none; }
   letter-spacing: -0.04em;
   line-height: 1.15;
 }
-/* ===== Floating grain-gradient carousel ===== */
-.gfloat {
-  position: relative;
-  margin-top: 40px;
-  border-radius: var(--radius-4xl);
-  background: radial-gradient(120% 140% at 20% 0%, #241512 0%, #0d0806 55%, #05030a 100%);
-  padding: 72px 0;
+.forwho__grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+@media (min-width: 800px) {
+  .forwho__grid { grid-template-columns: repeat(3, 1fr); }
+}
+.forwho article {
+  background: var(--frame);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0 0 20px;
   overflow: hidden;
 }
-.gfloat__track {
-  display: flex;
-  gap: 28px;
-  width: max-content;
-  padding: 0 28px;
+.forwho article img {
+  width: 100%;
+  height: 168px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 16px;
   will-change: transform;
 }
-
-.gfloat__card {
-  position: relative;
-  flex: 0 0 auto;
-  width: 260px;
-  height: 320px;
-  border-radius: 26px;
-  overflow: hidden;
-  box-shadow: 0 40px 80px -32px rgb(0 0 0 / 0.7);
-}
-.gfloat__card--a { background: linear-gradient(140deg, #4b3bff 0%, #241a8f 45%, #0a0722 100%); }
-.gfloat__card--b { background: linear-gradient(140deg, #ff5a1f 0%, #7c1f0d 45%, #170604 100%); }
-.gfloat__card--c { background: linear-gradient(140deg, #8b4bff 0%, #3a1e8f 45%, #0c0722 100%); }
-
-.gfloat__grain {
-  position: absolute;
-  inset: -20%;
-  opacity: 0.28;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-
-.gfloat__caption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 20px 22px 24px;
-  display: grid;
-  gap: 4px;
-  color: #fff;
-  background: linear-gradient(180deg, transparent, rgb(4 4 10 / 0.55) 70%);
-}
-.gfloat__caption strong {
-  font-size: 16px;
+.forwho h3 {
+  margin: 0 0 8px;
+  padding: 0 22px;
+  font-size: 18px;
   font-weight: 600;
 }
-.gfloat__caption span {
-  font-size: 12.5px;
-  line-height: 1.45;
-  color: rgb(255 255 255 / 0.78);
-}
-
-@media (max-width: 640px) {
-  .gfloat { padding: 48px 0; }
-  .gfloat__card { width: 200px; height: 250px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .gfloat__track { transition: none; }
+.forwho p {
+  margin: 0;
+  padding: 0 22px;
+  color: var(--muted-foreground);
+  font-size: 14.5px;
+  line-height: 1.5;
 }
 
 /* ========== BENTO ========== */

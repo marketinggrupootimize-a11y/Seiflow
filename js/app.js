@@ -431,53 +431,6 @@ function paintBlob(canvas, key) {
   requestAnimationFrame(frame);
 }
 
-function initFloatCarousel() {
-  const root = $("#gfloat");
-  const track = $("#gfloat-track");
-  if (!root || !track) return;
-
-  const reduced = prefersReduced();
-  let halfWidth = 0;
-  let offset = 0;
-  let hovering = false;
-  let lastTime = null;
-  const driftSpeed = 34; // px per second — flui devagar para a esquerda sozinho
-
-  function measure() {
-    halfWidth = track.scrollWidth / 2;
-  }
-  measure();
-  window.addEventListener("resize", measure);
-
-  function wrap(v) {
-    if (halfWidth <= 0) return v;
-    let n = v % halfWidth;
-    if (n < 0) n += halfWidth;
-    return n;
-  }
-
-  function render() {
-    track.style.transform = `translateX(${-offset}px)`;
-  }
-
-  function frame(time) {
-    if (lastTime === null) lastTime = time;
-    const dt = Math.min((time - lastTime) / 1000, 0.1);
-    lastTime = time;
-    if (!reduced && !hovering) {
-      offset = wrap(offset + driftSpeed * dt);
-      render();
-    }
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-
-  root.addEventListener("mouseenter", () => { hovering = true; });
-  root.addEventListener("mouseleave", () => { hovering = false; });
-
-  render();
-}
-
 function initBlob() {
   if (prefersReduced()) return;
   $$("[data-blob]").forEach((canvas) => {
@@ -642,7 +595,6 @@ function boot() {
   initChrome();
   initNav();
   initQuotes();
-  initFloatCarousel();
   initFaq();
   initShot();
   initMotion();
