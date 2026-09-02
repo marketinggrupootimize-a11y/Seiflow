@@ -1066,41 +1066,158 @@ html:not(.dark) .shot--dark { display: none; }
   letter-spacing: -0.04em;
   line-height: 1.15;
 }
-.forwho__grid {
-  display: grid;
-  gap: 12px;
-  margin-top: 24px;
+/* ===== Gradient Carousel (3D coverflow + color-extracted background) ===== */
+.gcarousel {
+  position: relative;
+  margin-top: 40px;
+  padding: 56px 0 8px;
+  isolation: isolate;
 }
-@media (min-width: 800px) {
-  .forwho__grid { grid-template-columns: repeat(3, 1fr); }
-}
-.forwho article {
-  background: var(--frame);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 0 0 20px;
+
+.gcarousel__bg {
+  position: absolute;
+  inset: -40px 0;
+  z-index: -1;
   overflow: hidden;
 }
-.forwho article img {
+.gcarousel__bg-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  background:
+    radial-gradient(closest-side, var(--gc-color, var(--card-primary)) 0%, transparent 72%);
+  filter: blur(60px);
+  transform: scale(1.15);
+}
+.gcarousel__bg-layer.is-active { opacity: 0.75; }
+html.dark .gcarousel__bg-layer.is-active { opacity: 0.5; }
+
+.gcarousel__track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 320px;
+  perspective: 1200px;
+}
+.gcarousel__card {
+  position: absolute;
+  width: 240px;
+  height: 288px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--frame);
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.35);
+  transition: transform 0.6s var(--ease), opacity 0.6s var(--ease), filter 0.6s var(--ease);
+  will-change: transform, opacity, filter;
+}
+.gcarousel__card[data-pos="0"] {
+  transform: translateX(0) translateZ(0) scale(1);
+  z-index: 3;
+  opacity: 1;
+  filter: blur(0);
+}
+.gcarousel__card[data-pos="-1"] {
+  transform: translateX(-62%) translateZ(-160px) rotateY(22deg) scale(0.82);
+  z-index: 2;
+  opacity: 0.7;
+  filter: blur(1px);
+}
+.gcarousel__card[data-pos="1"] {
+  transform: translateX(62%) translateZ(-160px) rotateY(-22deg) scale(0.82);
+  z-index: 2;
+  opacity: 0.7;
+  filter: blur(1px);
+}
+.gcarousel__card[data-pos="hidden"] {
+  transform: translateX(0) translateZ(-260px) scale(0.6);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gcarousel__card img {
   width: 100%;
-  height: 168px;
+  height: 100%;
   object-fit: cover;
   display: block;
-  margin-bottom: 16px;
-  will-change: transform;
 }
-.forwho h3 {
-  margin: 0 0 8px;
-  padding: 0 22px;
-  font-size: 18px;
+.gcarousel__label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px 18px 18px;
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  color: #fff;
+  background: linear-gradient(180deg, transparent, rgb(6 8 20 / 0.82) 65%);
+}
+.gcarousel__label strong {
+  font-size: 15.5px;
   font-weight: 600;
 }
-.forwho p {
-  margin: 0;
-  padding: 0 22px;
-  color: var(--muted-foreground);
-  font-size: 14.5px;
-  line-height: 1.5;
+.gcarousel__label span {
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.82);
+}
+.gcarousel__card[data-pos="-1"] .gcarousel__label,
+.gcarousel__card[data-pos="1"] .gcarousel__label {
+  opacity: 0;
+}
+
+.gcarousel__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 28px;
+}
+.gcarousel__nav > button:not(.gcarousel__dots button) {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--frame);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.gcarousel__nav > button:not(.gcarousel__dots button):hover {
+  border-color: var(--card-primary);
+  transform: translateY(-1px);
+}
+.gcarousel__dots {
+  display: flex;
+  gap: 8px;
+}
+.gcarousel__dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.25s, transform 0.25s;
+}
+.gcarousel__dots button.is-active {
+  background: var(--card-primary);
+  transform: scale(1.3);
+}
+
+@media (max-width: 640px) {
+  .gcarousel__track { height: 260px; }
+  .gcarousel__card { width: 190px; height: 230px; }
+  .gcarousel__card[data-pos="-1"] { transform: translateX(-48%) translateZ(-140px) rotateY(22deg) scale(0.78); }
+  .gcarousel__card[data-pos="1"] { transform: translateX(48%) translateZ(-140px) rotateY(-22deg) scale(0.78); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gcarousel__card,
+  .gcarousel__bg-layer { transition: none; }
 }
 
 /* ========== BENTO ========== */

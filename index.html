@@ -228,22 +228,50 @@
       <div class="wrap">
         <p class="eyebrow">Especializada em educação — não uma IA genérica</p>
         <h2 class="anim">Uma IA educacional, conectada ao ecossistema de gestão da instituição.</h2>
-        <div class="forwho__grid">
-          <article class="anim" style="--d:0">
-            <img src="assets/vis-escola.jpg" alt="">
-            <h3>Educação básica</h3>
-            <p>Secretaria, responsável, matrícula, calendário e mensalidade — o WhatsApp da escola deixa de ser plantão improvisado.</p>
-          </article>
-          <article class="anim" style="--d:1">
-            <img src="assets/vis-faculdade.jpg" alt="">
-            <h3>Faculdades e centros</h3>
-            <p>Notas, boletim, processo seletivo e estágio — com a base acadêmica da casa.</p>
-          </article>
-          <article class="anim" style="--d:2">
-            <img src="assets/vis-rede.jpg" alt="">
-            <h3>Redes e multi-unidade</h3>
-            <p>Cada unidade isolada, com a mesma operação. A direção vê volume, fila e custo — sem misturar dados.</p>
-          </article>
+      </div>
+
+      <div class="gcarousel" id="gcarousel">
+        <div class="gcarousel__bg" aria-hidden="true">
+          <span class="gcarousel__bg-layer is-active" id="gcarousel-bg-a"></span>
+          <span class="gcarousel__bg-layer" id="gcarousel-bg-b"></span>
+        </div>
+
+        <div class="gcarousel__track" id="gcarousel-track">
+          <button type="button" class="gcarousel__card" data-index="0">
+            <img src="assets/vis-escola.jpg" alt="Fachada de campus escolar com pátio e bandeira do Brasil" crossorigin="anonymous">
+            <span class="gcarousel__label">
+              <strong>Educação básica</strong>
+              <span>Secretaria, responsável, matrícula, calendário e mensalidade.</span>
+            </span>
+          </button>
+          <button type="button" class="gcarousel__card" data-index="1">
+            <img src="assets/vis-faculdade.jpg" alt="Pátio de faculdade com alunos" crossorigin="anonymous">
+            <span class="gcarousel__label">
+              <strong>Faculdades e centros</strong>
+              <span>Notas, boletim, processo seletivo e estágio.</span>
+            </span>
+          </button>
+          <button type="button" class="gcarousel__card" data-index="2">
+            <img src="assets/vis-rede.jpg" alt="Rede de unidades de ensino" crossorigin="anonymous">
+            <span class="gcarousel__label">
+              <strong>Redes e multi-unidade</strong>
+              <span>Cada unidade isolada, com a mesma operação.</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="gcarousel__nav">
+          <button type="button" id="gcarousel-prev" aria-label="Anterior">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <div class="gcarousel__dots" id="gcarousel-dots" role="tablist" aria-label="Segmento da instituição">
+            <button type="button" class="is-active" data-index="0" role="tab" aria-selected="true" aria-label="Educação básica"></button>
+            <button type="button" data-index="1" role="tab" aria-selected="false" aria-label="Faculdades e centros"></button>
+            <button type="button" data-index="2" role="tab" aria-selected="false" aria-label="Redes e multi-unidade"></button>
+          </div>
+          <button type="button" id="gcarousel-next" aria-label="Próximo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
         </div>
       </div>
     </section>
