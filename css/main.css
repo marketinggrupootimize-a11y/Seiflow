@@ -1641,14 +1641,28 @@ td:last-child { color: var(--foreground); font-weight: 600; }
 @media (min-width: 900px) {
   .proof__grid { grid-template-columns: 0.9fr 1.1fr; }
 }
-.proof__chat {
-  margin: 0;
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px -28px rgba(6, 16, 92, 0.35);
+.proof__phones {
+  position: relative;
   max-width: 380px;
+  padding: 12px 0 12px 64px;
 }
-.proof__chat img { width: 100%; height: auto; display: block; }
+.proof__phone {
+  display: block;
+  width: 72%;
+  height: auto;
+  filter: drop-shadow(0 24px 44px rgba(6, 16, 92, 0.35));
+}
+.proof__phone--back {
+  position: absolute;
+  top: 8%;
+  left: 0;
+  width: 62%;
+  opacity: 0.9;
+}
+.proof__phone--front {
+  position: relative;
+  margin-left: auto;
+}
 .proof__copy h2 {
   margin: 0 0 16px;
   font-size: clamp(2rem, 4vw, 3rem);
