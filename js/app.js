@@ -431,104 +431,81 @@ function paintBlob(canvas, key) {
   requestAnimationFrame(frame);
 }
 
-function extractDominantColor(img) {
-  return new Promise((resolve) => {
-    const done = () => {
-      try {
-        const canvas = document.createElement("canvas");
-        const w = (canvas.width = 24);
-        const h = (canvas.height = 24);
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, w, h);
-        const { data } = ctx.getImageData(0, 0, w, h);
-        let r = 0, g = 0, b = 0, n = 0;
-        for (let i = 0; i < data.length; i += 4) {
-          r += data[i]; g += data[i + 1]; b += data[i + 2]; n++;
-        }
-        resolve(`rgb(${Math.round(r / n)}, ${Math.round(g / n)}, ${Math.round(b / n)})`);
-      } catch (e) {
-        resolve(null);
-      }
-    };
-    if (img.complete && img.naturalWidth) done();
-    else img.addEventListener("load", done, { once: true });
+function initFloatCarousel() {
+  const root = $("#gfloat");
+  const track = $("#gfloat-track");
+  if (!root || !track) return;
+
+  const reduced = prefersReduced();
+  let halfWidth = 0;
+  let offset = 0;
+  let hovering = false;
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartOffset = 0;
+  let lastTime = null;
+  const driftSpeed = 26; // px per second, drifts left on its own
+
+  function measure() {
+    halfWidth = track.scrollWidth / 2;
+  }
+  measure();
+  window.addEventListener("resize", measure);
+
+  function wrap(v) {
+    if (halfWidth <= 0) return v;
+    let n = v % halfWidth;
+    if (n < 0) n += halfWidth;
+    return n;
+  }
+
+  function render() {
+    track.style.transform = `translateX(${-offset}px)`;
+  }
+
+  function frame(time) {
+    if (lastTime === null) lastTime = time;
+    const dt = (time - lastTime) / 1000;
+    lastTime = time;
+    if (!reduced && !hovering && !dragging) {
+      offset = wrap(offset + driftSpeed * dt);
+      render();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  root.addEventListener("mouseenter", () => { hovering = true; });
+  root.addEventListener("mouseleave", () => { hovering = false; dragging = false; });
+
+  root.addEventListener(
+    "wheel",
+    (e) => {
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      offset = wrap(offset + delta);
+      render();
+      e.preventDefault();
+    },
+    { passive: false }
+  );
+
+  root.addEventListener("pointerdown", (e) => {
+    dragging = true;
+    root.classList.add("is-dragging");
+    dragStartX = e.clientX;
+    dragStartOffset = offset;
+    root.setPointerCapture(e.pointerId);
   });
-}
-
-function initGradientCarousel() {
-  const root = $("#gcarousel");
-  const track = $("#gcarousel-track");
-  const cards = $$(".gcarousel__card", track || document);
-  const dots = $$("#gcarousel-dots button");
-  const bgA = $("#gcarousel-bg-a");
-  const bgB = $("#gcarousel-bg-b");
-  const prevBtn = $("#gcarousel-prev");
-  const nextBtn = $("#gcarousel-next");
-  if (!root || !track || !cards.length) return;
-
-  const total = cards.length;
-  let active = 0;
-  let usingA = true;
-  let timer = null;
-  const colors = new Array(total).fill(null);
-
-  cards.forEach((card, i) => {
-    const img = card.querySelector("img");
-    if (img) extractDominantColor(img).then((c) => { colors[i] = c; if (i === active) applyBg(c); });
+  root.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    offset = wrap(dragStartOffset - (e.clientX - dragStartX));
+    render();
   });
+  const endDrag = () => { dragging = false; root.classList.remove("is-dragging"); };
+  root.addEventListener("pointerup", endDrag);
+  root.addEventListener("pointercancel", endDrag);
 
-  function applyBg(color) {
-    if (!color || !bgA || !bgB) return;
-    const incoming = usingA ? bgB : bgA;
-    const outgoing = usingA ? bgA : bgB;
-    incoming.style.setProperty("--gc-color", color);
-    incoming.classList.add("is-active");
-    outgoing.classList.remove("is-active");
-    usingA = !usingA;
-  }
-
-  function layout() {
-    cards.forEach((card, i) => {
-      let diff = i - active;
-      if (diff > total / 2) diff -= total;
-      if (diff < -total / 2) diff += total;
-      const pos = diff === 0 ? "0" : diff === -1 ? "-1" : diff === 1 ? "1" : "hidden";
-      card.setAttribute("data-pos", pos);
-    });
-    dots.forEach((d, n) => {
-      const on = n === active;
-      d.classList.toggle("is-active", on);
-      d.setAttribute("aria-selected", String(on));
-    });
-    applyBg(colors[active]);
-  }
-
-  function show(i) {
-    active = (i + total) % total;
-    layout();
-    restart();
-  }
-
-  function restart() {
-    window.clearInterval(timer);
-    if (prefersReduced()) return;
-    timer = window.setInterval(() => show(active + 1), 5000);
-  }
-
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      const i = Number(card.dataset.index);
-      if (i !== active) show(i);
-    });
-  });
-  dots.forEach((d) => d.addEventListener("click", () => show(Number(d.dataset.index))));
-  prevBtn?.addEventListener("click", () => show(active - 1));
-  nextBtn?.addEventListener("click", () => show(active + 1));
-  root.addEventListener("mouseenter", () => window.clearInterval(timer));
-  root.addEventListener("mouseleave", restart);
-
-  layout();
-  restart();
+  render();
 }
 
 function initBlob() {
@@ -695,7 +672,7 @@ function boot() {
   initChrome();
   initNav();
   initQuotes();
-  initGradientCarousel();
+  initFloatCarousel();
   initFaq();
   initShot();
   initMotion();
