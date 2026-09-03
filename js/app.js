@@ -269,20 +269,6 @@ function initScrollFX(gsap, ST) {
     );
   });
 
-  const edu = $(".edu-moment img");
-  if (edu) {
-    gsap.fromTo(
-      edu,
-      { yPercent: -5, scale: 1.05 },
-      {
-        yPercent: 5,
-        scale: 1,
-        ease: "none",
-        scrollTrigger: { trigger: ".edu-moment", start: "top bottom", end: "bottom top", scrub: true },
-      }
-    );
-  }
-
   $$(".forwho article img").forEach((img) => {
     gsap.fromTo(
       img,
