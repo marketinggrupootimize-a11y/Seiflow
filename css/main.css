@@ -1933,8 +1933,9 @@ td:last-child { color: var(--foreground); font-weight: 600; }
   flex-direction: column;
   align-items: stretch;
   gap: 10px;
-  padding: 16px;
-  max-width: 30rem;
+  padding: 20px;
+  max-width: 46rem;
+  width: 100%;
 }
 .footer__form-row {
   display: flex;
