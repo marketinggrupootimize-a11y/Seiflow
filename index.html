@@ -491,11 +491,20 @@
       </div>
       <div class="footer__cta-inner">
         <h2>Vamos colocar a IA da sua instituição para trabalhar?</h2>
-        <form class="footer__form" id="cta-form">
-          <label class="sr-only" for="cta-email">E-mail institucional</label>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-          <input id="cta-email" type="email" placeholder="E-mail institucional" required>
-          <button type="submit">Quero o diagnóstico
+        <form class="footer__form footer__form--contact" id="cta-form">
+          <div class="footer__form-row">
+            <div>
+              <label class="sr-only" for="cta-name">Seu nome</label>
+              <input id="cta-name" type="text" placeholder="Seu nome" required>
+            </div>
+            <div>
+              <label class="sr-only" for="cta-email">E-mail institucional</label>
+              <input id="cta-email" type="email" placeholder="E-mail institucional" required>
+            </div>
+          </div>
+          <label class="sr-only" for="cta-message">Mensagem</label>
+          <textarea id="cta-message" placeholder="Conte um pouco sobre a sua instituição e o que você precisa" rows="3"></textarea>
+          <button type="submit">Enviar para comercial@seiflow.com.br
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
         </form>

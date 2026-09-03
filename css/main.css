@@ -1929,6 +1929,42 @@ td:last-child { color: var(--foreground); font-weight: 600; }
   white-space: nowrap;
 }
 
+.footer__form--contact {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  padding: 16px;
+  max-width: 30rem;
+}
+.footer__form-row {
+  display: flex;
+  gap: 10px;
+}
+.footer__form-row > div { flex: 1; }
+.footer__form--contact input,
+.footer__form--contact textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--background) 96%, transparent);
+  outline: none;
+  resize: vertical;
+}
+.footer__form--contact input:focus,
+.footer__form--contact textarea:focus { border-color: var(--accent); }
+.footer__form--contact button {
+  justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .footer__form-row { flex-direction: column; }
+}
+
 .footer__base {
   background: var(--accent);
   border-radius: 48px 48px 0 0;

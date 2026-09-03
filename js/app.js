@@ -44,11 +44,21 @@ function initChrome() {
     a.href = waUrl();
   });
 
+  const CONTACT_EMAIL = "comercial@seiflow.com.br";
   const form = $("#cta-form");
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
+    const name = $("#cta-name")?.value.trim();
     const email = $("#cta-email")?.value.trim();
-    window.open(waUrl(email), "_blank", "noopener");
+    const message = $("#cta-message")?.value.trim();
+    const subject = `Diagnóstico Seiflow — ${name}`;
+    const body = [
+      `Nome: ${name}`,
+      `E-mail: ${email}`,
+      "",
+      message || "Quero saber mais sobre a Seiflow para minha instituição.",
+    ].join("\n");
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 
   const loginForm = $("#login-form");
