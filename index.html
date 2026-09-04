@@ -56,10 +56,8 @@
           <div class="nav__menu" id="drop-recursos" hidden>
             <a href="#ganhos">Antes e depois</a>
             <a href="#faq">Objeções</a>
-            <a href="#planos">Planos</a>
           </div>
         </div>
-        <a class="nav__link" href="#planos">Planos</a>
       </nav>
 
       <div class="nav__actions">
@@ -78,6 +76,7 @@
               <input id="login-password" type="password" placeholder="Senha" autocomplete="current-password" required>
               <button type="submit" class="login-panel__submit">Entrar</button>
             </form>
+            <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
             <a href="#cta" class="login-panel__link">Ainda não tem acesso? Fale com a gente</a>
           </div>
         </div>
@@ -102,7 +101,6 @@
       <a href="#produto">O produto</a>
       <a href="#agentes">Agentes da escola</a>
       <a href="#sistema">Como funciona</a>
-      <a href="#planos">Planos</a>
       <a href="#faq">Objeções</a>
       <a data-wa href="#cta">Diagnóstico grátis</a>
       <a href="#cta">Login</a>
@@ -352,7 +350,7 @@
       <div class="wrap">
         <p class="eyebrow">Agentes da instituição</p>
         <h2 class="anim">Uma IA. Todas as áreas da instituição.</h2>
-        <p class="lede">Cada agente cobre uma função da instituição — treinado com os dados das instituição conectado direto ao ERP.</p>
+        <p class="lede">Cada agente cobre uma função da instituição, treinado com os dados da instituição e conectado diretamente ao ERP.</p>
         <div class="agents__grid">
           <article class="agent anim" style="--d:0">
             <span class="agent__icon" aria-hidden="true">
@@ -387,63 +385,6 @@
             <p class="agent__ex">“Quanto custa o curso de Administração?”</p>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section id="planos" class="pricing">
-      <div class="wrap">
-        <p class="eyebrow">Investimento</p>
-        <h2 class="anim">Você não está comprando IA. Está comprando tempo.</h2>
-        <p class="lede">Mensalidade passará a vigorar só após o bônus ou decorridos 30 dias.</p>
-        <div class="plans">
-          <article class="plan anim" style="--d:0">
-            <h3>Start</h3>
-            <div class="plan__price">R$&nbsp;999<span>/mês</span></div>
-            <p>2 números WhatsApp da instituição</p>
-            <a class="plan__cta" data-wa href="https://wa.me/556293481258">Até 500 alunos</a>
-            <p class="plan__inc">Inclui:</p>
-            <ul>
-              <li>6 fluxos estratégicos de atendimento</li>
-              <li>500 créditos</li>
-              <li>Agentes especializados</li>
-              <li>Suporte online</li>
-              <li>1&nbsp;GB no repositório de conhecimento</li>
-              <li>500 créditos bônus grátis (30 dias)</li>
-            </ul>
-          </article>
-          <article class="plan plan--hot anim" style="--d:1">
-            <div class="plan__badge">Recomendado</div>
-            <h3>Standard</h3>
-            <div class="plan__price">R$&nbsp;1.499<span>/mês</span></div>
-            <p>2 números WhatsApp da instituição</p>
-            <a class="plan__cta plan__cta--dark" data-wa href="https://wa.me/556293481258">Até 1.000 alunos</a>
-            <p class="plan__inc">Inclui:</p>
-            <ul>
-              <li>6 fluxos estratégicos de atendimento</li>
-              <li>750 créditos</li>
-              <li>Agentes especializados</li>
-              <li>Suporte online</li>
-              <li>2&nbsp;GB no repositório de conhecimento</li>
-              <li>750 créditos bônus grátis (30 dias)</li>
-            </ul>
-          </article>
-          <article class="plan anim" style="--d:2">
-            <h3>Ultra</h3>
-            <div class="plan__price">R$&nbsp;3.499<span>/mês</span></div>
-            <p>3 números WhatsApp · redes de ensino</p>
-            <a class="plan__cta" data-wa href="https://wa.me/556293481258">Até 3.000 alunos</a>
-            <p class="plan__inc">Inclui:</p>
-            <ul>
-              <li>6 fluxos estratégicos de atendimento</li>
-              <li>1.500 créditos</li>
-              <li>Agentes especializados</li>
-              <li>Suporte online</li>
-              <li>3&nbsp;GB no repositório de conhecimento</li>
-              <li>1.500 créditos bônus grátis (30 dias)</li>
-            </ul>
-          </article>
-        </div>
-        <p class="pricing__note">A cobrança da mensalidade ocorre após o consumo dos créditos bônus ou em 30 dias. Setup inicial a partir de R$&nbsp;5.250, conforme volume e complexidade. O piloto começa em uma unidade, uma fila da secretaria, uma meta.</p>
       </div>
     </section>
 
@@ -508,6 +449,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
         </form>
+        <p class="form-status form-status--light" id="cta-status" role="status" aria-live="polite"></p>
       </div>
     </div>
 
@@ -529,7 +471,6 @@
           <div>
             <h3>Instituição</h3>
             <ul>
-              <li><a href="#planos">Planos</a></li>
               <li><a href="#faq">Objeções</a></li>
               <li><a href="#cta">Diagnóstico</a></li>
             </ul>

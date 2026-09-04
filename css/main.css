@@ -103,6 +103,17 @@ section[id] { scroll-margin-top: 108px; }
   border: 0;
 }
 
+.form-status {
+  min-height: 1.25rem;
+  margin: 10px 0 0;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.form-status--light { color: rgba(255, 255, 255, 0.86); }
+.login-panel__submit:disabled,
+.footer__form button:disabled { cursor: wait; opacity: 0.7; }
+
 .skip-to-content {
   position: absolute;
   left: 16px;
@@ -2016,13 +2027,41 @@ td:last-child { color: var(--foreground); font-weight: 600; }
   .footer__row, .footer__nav { flex-direction: column; gap: 32px; }
 }
 
+.anim,
+.edu-moment__frame,
+.proof__phones,
+.proof__copy,
+.quotes__body,
+.how__intro,
+.how__track,
+.agents__grid,
+.faq__intro,
+.faq__list,
+.footer__cta {
+  translate: 0 var(--parallax-shift, 0px);
+  will-change: translate;
+}
 .anim.is-in {
-  animation: card-in 0.7s var(--ease) both;
+  animation: card-in 0.95s var(--ease) both;
   animation-delay: calc(var(--d, 0) * 80ms);
 }
 @keyframes card-in {
-  from { opacity: 0.35; transform: translateY(18px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translateY(42px) scale(0.97); filter: blur(8px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim,
+  .edu-moment__frame,
+  .proof__phones,
+  .proof__copy,
+  .quotes__body,
+  .how__intro,
+  .how__track,
+  .agents__grid,
+  .faq__intro,
+  .faq__list,
+  .footer__cta { translate: none; will-change: auto; }
 }
 .quotes__body.is-swap {
   opacity: 0;

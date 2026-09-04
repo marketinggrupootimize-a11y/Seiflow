@@ -51,6 +51,9 @@ function initChrome() {
     const name = $("#cta-name")?.value.trim();
     const email = $("#cta-email")?.value.trim();
     const message = $("#cta-message")?.value.trim();
+    const status = $("#cta-status");
+    const submit = form.querySelector("button[type=submit]");
+    if (!name || !email) return;
     const subject = `Diagnóstico Seiflow — ${name}`;
     const body = [
       `Nome: ${name}`,
@@ -58,6 +61,11 @@ function initChrome() {
       "",
       message || "Quero saber mais sobre a Seiflow para minha instituição.",
     ].join("\n");
+    if (status) status.textContent = "Abrindo seu aplicativo de e-mail...";
+    if (submit) {
+      submit.disabled = true;
+      submit.setAttribute("aria-disabled", "true");
+    }
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 
@@ -65,8 +73,9 @@ function initChrome() {
   loginForm?.addEventListener("submit", (e) => {
     e.preventDefault();
     const email = $("#login-email")?.value.trim();
-    // TODO: integrar com o backend de autenticação
-    console.log("Tentativa de login:", email);
+    const status = $("#login-status");
+    if (!email) return;
+    if (status) status.textContent = "O acesso à área da instituição será liberado pela equipe. Fale conosco para receber seu convite.";
   });
 }
 
@@ -106,7 +115,9 @@ function initNav() {
     });
   });
 
-  document.addEventListener("click", closeDrops);
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".nav__drop")) closeDrops();
+  });
 
   function closeDrops() {
     $$(".nav__drop").forEach((d) => {
@@ -354,6 +365,37 @@ function readRgb(styles, name, fallback) {
   return fallback;
 }
 
+function initImmersiveScroll() {
+  if (prefersReduced()) return;
+  const layers = [
+    [".hero__copy", 0.08], [".hero__shot", -0.14], [".edu-moment__frame", 0.1],
+    [".proof__phones", -0.12], [".proof__copy", 0.06], [".quotes__body", -0.08],
+    [".how__intro", 0.08], [".how__track", -0.06], [".agents__grid", 0.07],
+    [".faq__intro", 0.06], [".faq__list", -0.06], [".footer__cta", 0.08],
+  ].flatMap(([selector, depth]) => $$(selector).map((el) => ({ el, depth })));
+  if (!layers.length) return;
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const center = window.innerHeight * 0.5;
+    layers.forEach(({ el, depth }) => {
+      const rect = el.getBoundingClientRect();
+      const distance = (center - (rect.top + rect.height * 0.5)) / window.innerHeight;
+      el.style.setProperty("--parallax-shift", `${(distance * depth * 80).toFixed(2)}px`);
+    });
+  };
+  const requestUpdate = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  };
+  update();
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate, { passive: true });
+}
+
 function paintBlob(canvas, key) {
   const ctx = canvas.getContext("2d", { alpha: true });
   if (!ctx) return;
@@ -517,7 +559,7 @@ function getAIResponse(question) {
     { k: ["boleto", "pagamento", "mensalidade", "pix", "inadimpl"], a: "O agente Financeiro consulta situação financeira, emite 2ª via de boleto e orienta pagamento via PIX — inclusive avisando vencimentos antes de você perguntar." },
     { k: ["matr", "vestibular", "processo seletivo", "curso", "interessad"], a: "O agente Comercial e de Captação conduz do primeiro contato até a matrícula: cursos, valores, processo seletivo e documentação." },
     { k: ["erp", "integra", "sistema"], a: "A Seiflow se conecta ao ERP da instituição e pode executar processos reais — não só responder — como emitir documentos e consultar dados acadêmicos e financeiros." },
-    { k: ["plano", "preço", "valor", "quanto custa"], a: "Temos os planos Start (R$ 999/mês), Standard (R$ 1.499/mês) e Ultra (R$ 3.499/mês) por unidade de ensino." },
+    { k: ["plano", "preço", "valor", "quanto custa"], a: "A equipe comercial apresenta a proposta conforme o tamanho, as filas e as integrações da sua instituição. Fale conosco para receber um diagnóstico." },
     { k: ["lgpd", "dado", "segur"], a: "Trabalhamos com isolamento por unidade, papéis de acesso e rastro de uso — a LGPD entra no desenho do piloto desde o primeiro dia." },
   ];
   const hit = canned.find((c) => c.k.some((word) => q.includes(word)));
@@ -594,6 +636,7 @@ function boot() {
   initFaq();
   initShot();
   initMotion();
+  initImmersiveScroll();
   initBlob();
   initAIChat();
 }
