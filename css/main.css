@@ -1706,8 +1706,8 @@ td:last-child { color: var(--foreground); font-weight: 600; }
   z-index: 3;
   right: -4%;
   bottom: -2%;
-  width: 30%;
-  max-width: 122px;
+  width: 22%;
+  max-width: 90px;
   height: auto;
   filter: drop-shadow(0 18px 18px rgb(6 16 92 / 0.28));
   pointer-events: none;
@@ -1718,7 +1718,7 @@ td:last-child { color: var(--foreground); font-weight: 600; }
   50% { transform: translateY(-8px) rotate(1deg); }
 }
 @media (max-width: 899px) {
-  .proof__mascot { right: 0; width: 25%; bottom: -2%; }
+  .proof__mascot { right: 0; width: 18%; max-width: 72px; bottom: -2%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .proof__mascot { animation: none; }
