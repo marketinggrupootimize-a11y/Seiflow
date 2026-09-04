@@ -247,18 +247,6 @@ function initEnters(ST) {
     return;
   }
 
-  if (ST) {
-    els.forEach((el) => {
-      ST.create({
-        trigger: el,
-        start: "top 92%",
-        once: true,
-        onEnter: () => reveal(el),
-      });
-    });
-    return;
-  }
-
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -436,7 +424,19 @@ function paintBlob(canvas, key) {
     ty = (e.clientY - rect.top) / rect.height;
   }, { passive: true });
 
+  let lastFrame = 0;
+  let visible = true;
+  let animationId = 0;
   function frame(t) {
+    if (!visible) {
+      animationId = 0;
+      return;
+    }
+    if (t - lastFrame < 33) {
+      animationId = requestAnimationFrame(frame);
+      return;
+    }
+    lastFrame = t;
     mx += (tx - mx) * 0.05;
     my += (ty - my) * 0.05;
     ctx.clearRect(0, 0, w, h);
@@ -457,7 +457,7 @@ function paintBlob(canvas, key) {
       ctx.fill();
     });
     ctx.globalCompositeOperation = "source-over";
-    requestAnimationFrame(frame);
+    animationId = requestAnimationFrame(frame);
   }
 
   resize();
@@ -466,7 +466,14 @@ function paintBlob(canvas, key) {
   } else {
     window.addEventListener("resize", resize);
   }
-  requestAnimationFrame(frame);
+  if (window.IntersectionObserver) {
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible && !animationId) animationId = requestAnimationFrame(frame);
+    }, { rootMargin: "120px" });
+    observer.observe(canvas);
+  }
+  animationId = requestAnimationFrame(frame);
 }
 
 function initBlob() {
