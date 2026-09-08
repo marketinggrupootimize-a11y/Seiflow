@@ -45,7 +45,7 @@
             <a href="#instituicao">Para a instituição</a>
             <a href="#produto">O produto</a>
             <a href="#sistema">Como funciona</a>
-            <a href="#agentes">Agentes da escola</a>
+            <a href="#agentes">Agentes da instituição</a>
           </div>
         </div>
         <div class="nav__drop">
@@ -61,25 +61,19 @@
       </nav>
 
       <div class="nav__actions">
-        <a class="nav__signin" data-wa href="https://wa.me/556293481258">Falar com a equipe</a>
         <div class="nav__drop">
-          <button class="nav__link nav__link--icon" aria-expanded="false" aria-haspopup="true" aria-label="Login" data-drop="login">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <button class="nav__signin" type="button" aria-expanded="false" aria-haspopup="true" data-drop="contato-nav">
+            Falar com a equipe
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div class="nav__menu nav__menu--login" id="drop-login" hidden>
-            <p class="login-panel__title">Acesse sua conta</p>
-            <p class="login-panel__sub">Entre para gerenciar sua instituição na Seiflow.</p>
-            <form class="login-panel__form" id="login-form">
-              <label class="sr-only" for="login-email">E-mail</label>
-              <input id="login-email" type="email" placeholder="voce@instituicao.com" autocomplete="email" required>
-              <label class="sr-only" for="login-password">Senha</label>
-              <input id="login-password" type="password" placeholder="Senha" autocomplete="current-password" required>
-              <button type="submit" class="login-panel__submit">Entrar</button>
-            </form>
-            <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
-            <a href="#cta" class="login-panel__link">Ainda não tem acesso? Fale com a gente</a>
+          <div class="nav__menu" id="drop-contato-nav" hidden>
+            <a data-wa="client" target="_blank" rel="noopener" href="https://wa.me/556292084328">Já sou cliente</a>
+            <a target="_blank" rel="noopener" href="https://admin.seiflow.com.br/cadastro">Ainda não sou cliente</a>
           </div>
         </div>
+        <a class="nav__link nav__link--icon" href="https://admin.seiflow.com.br" aria-label="Acessar painel administrativo" data-tooltip="Login">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </a>
         <a class="btn-split" data-wa href="https://wa.me/556293481258">
           <span class="btn-split__accent"></span>
           <span class="btn-split__label">Diagnóstico grátis</span>
@@ -87,6 +81,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>
           </span>
         </a>
+        <a class="btn-dark nav__hire" href="https://admin.seiflow.com.br/cadastro">Contrate agora</a>
       </div>
 
       <button id="nav-toggle" class="nav__toggle" aria-label="Abrir menu" aria-expanded="false">
@@ -99,14 +94,17 @@
     <div id="nav-drawer" class="nav__drawer" hidden>
       <a href="#instituicao">Para a instituição</a>
       <a href="#produto">O produto</a>
-      <a href="#agentes">Agentes da escola</a>
+      <a href="#agentes">Agentes da instituição</a>
       <a href="#sistema">Como funciona</a>
       <a href="#faq">Objeções</a>
       <a data-wa href="#cta">Diagnóstico grátis</a>
-      <a href="#cta">Login</a>
+      <a class="nav__hire" href="https://admin.seiflow.com.br/cadastro">Contrate agora</a>
+      <a href="https://admin.seiflow.com.br">Login</a>
     </div>
   </header>
 
+  <!-- Balão de chat com IA desativado a pedido — código preservado para reativar depois.
+       Para reativar: descomente este bloco e a chamada initAIChat() em js/app.js (função boot()).
   <aside class="ai-chat" id="ai-chat">
     <div class="ai-chat__panel" id="ai-chat-panel" hidden>
       <div class="ai-chat__head">
@@ -135,6 +133,7 @@
       <img class="ai-chat__avatar ai-chat__avatar--toggle" src="Imagens da landpage/Cara do chat - Mascote.png" alt="" aria-hidden="true">
     </button>
   </aside>
+  -->
 
   <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
     <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -154,7 +153,7 @@
       <div class="hero__copy">
         <div class="badge reveal">Instituição de ensino <span>✦</span></div>
         <h1>
-          <span class="reveal">SEIFLOW a IA especialista em educação,</span>
+          <span class="reveal"><span class="sparkles-text" data-sparkles>SEIFLOW</span> a IA especialista em educação,</span>
           <span class="reveal">que <em>entende, responde, resolve</em>.</span>
         </h1>
         <p class="reveal">Vai muito além do chatbot tradicional. A Seiflow entende a solicitação, consulta a base da instituição e conecta-se ao seu ERP para executar o processo de verdade.</p>
@@ -397,7 +396,16 @@
           <p>A pergunta não é quanto custa o Seiflow. É quanto custa a fila da secretaria continuar do jeito antigo.</p>
           <div class="faq__actions">
             <a class="btn-dark" data-wa href="#cta">Quero o diagnóstico</a>
-            <a class="btn-ghost" data-wa href="https://wa.me/556293481258">Falar com suporte</a>
+            <div class="nav__drop">
+              <button class="btn-ghost" type="button" aria-expanded="false" aria-haspopup="true" data-drop="contato-faq">
+                Falar com suporte
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="nav__menu" id="drop-contato-faq" hidden>
+                <a data-wa="client" target="_blank" rel="noopener" href="https://wa.me/556292084328">Já sou cliente</a>
+                <a target="_blank" rel="noopener" href="https://admin.seiflow.com.br/cadastro">Ainda não sou cliente</a>
+              </div>
+            </div>
           </div>
         </div>
         <div class="faq__list" role="list">
@@ -421,6 +429,201 @@
             <div class="faq__q">LGPD e dados de alunos.<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
             <p>Isolamento por unidade, papéis de acesso e rastro de uso. TI entra no desenho de permissões no primeiro dia do piloto.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ecossistema" class="ecosystem">
+      <div class="wrap ecosystem__grid">
+        <div class="ecosystem__intro anim">
+          <p class="eyebrow ecosystem__eyebrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><path d="M9.5 10.5 5.7 7.2M14.5 10.5l3.8-3.3M9.5 13.5l-3.8 3.3M14.5 13.5l3.8 3.3"/></svg>
+            Ecossistema Edtech 360°
+          </p>
+          <h2>Da infraestrutura à conversa com o aluno, tudo em um só grupo.</h2>
+          <p>O Grupo Otimize-TI cuida de cada camada da sua instituição: o servidor que sustenta o sistema, a gestão acadêmica e financeira, o dinheiro que entra e a IA que atende o aluno — tudo integrado nativamente, sem depender de terceiros.</p>
+          <div class="ecosystem__actions">
+            <span class="ecosystem__pill"><span class="ecosystem__pill-dot" aria-hidden="true"></span>5 empresas, 1 ecossistema</span>
+          </div>
+        </div>
+
+        <div class="hub anim" aria-hidden="true">
+          <svg class="hub__lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <circle cx="50" cy="50" r="40"></circle>
+            <line x1="50" y1="50" x2="50" y2="11"></line>
+            <line x1="50" y1="50" x2="87" y2="50"></line>
+            <line x1="50" y1="50" x2="50" y2="89"></line>
+            <line x1="50" y1="50" x2="13" y2="50"></line>
+          </svg>
+          <span class="hub__dot hub__dot--1"></span>
+          <span class="hub__dot hub__dot--2"></span>
+          <span class="hub__dot hub__dot--3"></span>
+
+          <span class="hub__pulse hub__pulse--top"></span>
+          <span class="hub__pulse hub__pulse--right"></span>
+          <span class="hub__pulse hub__pulse--bottom"></span>
+          <span class="hub__pulse hub__pulse--left"></span>
+
+          <div class="hub__center">
+            <span class="hub__center-icon">
+              <img class="hub__glyph" src="assets/grupo/mark-sei.png" alt="" aria-hidden="true">
+            </span>
+            <strong>SEI</strong>
+            <small>Gestão 360°</small>
+          </div>
+
+          <div class="hub__node hub__node--top">
+            <span class="hub__node-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+            </span>
+            <small>SEI Flow</small>
+          </div>
+          <div class="hub__node hub__node--right">
+            <span class="hub__node-icon">
+              <img class="hub__glyph" src="assets/grupo/mark-otimizepay.png" alt="" aria-hidden="true">
+            </span>
+            <small>Otimize Pay</small>
+          </div>
+          <div class="hub__node hub__node--bottom">
+            <span class="hub__node-icon">
+              <img class="hub__glyph" src="assets/grupo/mark-cloud.png" alt="" aria-hidden="true">
+            </span>
+            <small>Otimize Cloud</small>
+          </div>
+          <div class="hub__node hub__node--left">
+            <span class="hub__node-icon">
+              <img class="hub__glyph" src="assets/grupo/mark-open.png" alt="" aria-hidden="true">
+            </span>
+            <small>SEI Open</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap eco-marquee anim">
+        <div class="eco-marquee__track">
+          <div class="eco-marquee__group">
+            <article class="eco-card">
+              <img class="eco-card__logo" src="assets/grupo/sei-erp.png" alt="SEI - Plataforma de Gestão">
+              <h3>SEI - Gestão Educacional 360°</h3>
+              <p>O ERP definitivo para instituições de médio e grande porte que buscam escala e lucratividade. Centraliza acadêmico, financeiro e secretaria em uma única interface robusta.</p>
+              <ul>
+                <li>Inteligência artificial para atendimento e gestão</li>
+                <li>BI integrado com relatórios estratégicos em tempo real</li>
+                <li>Diploma Digital e GED (Gestão Eletrônica de Documentos)</li>
+                <li>22 módulos integrados para controle total da operação</li>
+              </ul>
+            </article>
+
+            <article class="eco-card">
+              <img class="eco-card__logo" src="assets/grupo/otimize-pay.png" alt="Otimize Pay">
+              <h3>Otimize Pay - Ecossistema Financeiro</h3>
+              <p>Automatiza o fluxo de caixa e reduz a inadimplência com tecnologia nativa.</p>
+              <ul>
+                <li>Régua de cobrança automática por e-mail, SMS e WhatsApp</li>
+                <li>Split de pagamentos e antecipação de recebíveis</li>
+                <li>Conciliação bancária 100% automática, integrada ao SEI</li>
+                <li>Liquidação rápida via PIX, boleto e cartão</li>
+              </ul>
+            </article>
+
+            <article class="eco-card">
+              <img class="eco-card__logo" src="assets/grupo/sei-open.png" alt="SEI Open">
+              <h3>SEI Open - O Seu Super Aliado</h3>
+              <p>A solução ideal para instituições que buscam agilidade e tecnologia de ponta sem precisar de uma equipe técnica própria. O SEI com suporte consultivo.</p>
+              <ul>
+                <li>Super Assistente: configuramos seus contratos e turmas</li>
+                <li>Implementação ágil, tecnologia pronta para uso</li>
+                <li>Consultoria dedicada para garantir a adoção do software</li>
+                <li>Gestão simplificada para escolas em crescimento</li>
+              </ul>
+            </article>
+
+            <article class="eco-card">
+              <img class="eco-card__logo eco-card__logo--mark" src="assets/logo-mark.png" alt="SEI Flow">
+              <h3>SEI Flow - Agente Inteligente 24/7</h3>
+              <p>Muito além de um chatbot. O SEI Flow é um agente de IA Educacional, integrado nativamente ao banco de dados do seu ERP.</p>
+              <ul>
+                <li>Respostas com dados reais sobre notas, faltas e boletos</li>
+                <li>Redução de OpEx: menos atrito e menos carga na secretaria</li>
+                <li>Atendimento oficial pelo WhatsApp, onde o aluno já está</li>
+                <li>Disponibilidade total: atendimento 24 horas por dia</li>
+              </ul>
+            </article>
+
+            <article class="eco-card">
+              <img class="eco-card__logo" src="assets/grupo/otimize-cloud.png" alt="Otimize Cloud">
+              <h3>Otimize Cloud - Infraestrutura de Nuvem Dedicada (IaaS)</h3>
+              <p>Infraestrutura de nuvem dedicada, desenhada para suportar o ecossistema SEI com máxima estabilidade.</p>
+              <ul>
+                <li>Segurança e LGPD: controle total sobre os dados sensíveis</li>
+                <li>Escalabilidade sob demanda em períodos de pico</li>
+                <li>Suporte unificado entre infraestrutura e sistema</li>
+                <li>Alta disponibilidade com backup redundante 24/7</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="eco-marquee__group" aria-hidden="true">
+            <article class="eco-card">
+              <img class="eco-card__logo" src="assets/grupo/sei-erp.png" alt="">
+              <h3>SEI - Gestão Educacional 360°</h3>
+              <p>O ERP definitivo para instituições de médio e grande porte que buscam escala e lucratividade. Centraliza acadêmico, financeiro e secretaria em uma única interface robusta.</p>
+              <ul>
+                <li>Inteligência artificial para atendimento e gestão</li>
+                <li>BI integrado com relatórios estratégicos em tempo real</li>
+                <li>Diploma Digital e GED (Gestão Eletrônica de Documentos)</li>
+                <li>22 módulos integrados para controle total da operação</li>
+              </ul>
+            </article>
+
+            <article class="eco-card">
+              <img class="eco-card__logo" src="assets/grupo/otimize-pay.png" alt="">
+              <h3>Otimize Pay - Ecossistema Financeiro</h3>
+              <p>Automatiza o fluxo de caixa e reduz a inadimplência com tecnologia nativa.</p>
+              <ul>
+                <li>Régua de cobrança automática por e-mail, SMS e WhatsApp</li>
+                <li>Split de pagamentos e antecipação de recebíveis</li>
+                <li>Conciliação bancária 100% automática, integrada ao SEI</li>
+                <li>Liquidação rápida via PIX, boleto e cartão</li>
+              </ul>
+            </article>
+
+            <article class="eco-card">
+              <img class="eco-card__logo" src="assets/grupo/sei-open.png" alt="">
+              <h3>SEI Open - O Seu Super Aliado</h3>
+              <p>A solução ideal para instituições que buscam agilidade e tecnologia de ponta sem precisar de uma equipe técnica própria. O SEI com suporte consultivo.</p>
+              <ul>
+                <li>Super Assistente: configuramos seus contratos e turmas</li>
+                <li>Implementação ágil, tecnologia pronta para uso</li>
+                <li>Consultoria dedicada para garantir a adoção do software</li>
+                <li>Gestão simplificada para escolas em crescimento</li>
+              </ul>
+            </article>
+
+            <article class="eco-card">
+              <img class="eco-card__logo eco-card__logo--mark" src="assets/logo-mark.png" alt="">
+              <h3>SEI Flow - Agente Inteligente 24/7</h3>
+              <p>Muito além de um chatbot. O SEI Flow é um agente de IA Educacional, integrado nativamente ao banco de dados do seu ERP.</p>
+              <ul>
+                <li>Respostas com dados reais sobre notas, faltas e boletos</li>
+                <li>Redução de OpEx: menos atrito e menos carga na secretaria</li>
+                <li>Atendimento oficial pelo WhatsApp, onde o aluno já está</li>
+                <li>Disponibilidade total: atendimento 24 horas por dia</li>
+              </ul>
+            </article>
+
+            <article class="eco-card">
+              <img class="eco-card__logo" src="assets/grupo/otimize-cloud.png" alt="">
+              <h3>Otimize Cloud - Infraestrutura de Nuvem Dedicada (IaaS)</h3>
+              <p>Infraestrutura de nuvem dedicada, desenhada para suportar o ecossistema SEI com máxima estabilidade.</p>
+              <ul>
+                <li>Segurança e LGPD: controle total sobre os dados sensíveis</li>
+                <li>Escalabilidade sob demanda em períodos de pico</li>
+                <li>Suporte unificado entre infraestrutura e sistema</li>
+                <li>Alta disponibilidade com backup redundante 24/7</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -465,7 +668,7 @@
             <ul>
               <li><a href="#produto">O produto</a></li>
               <li><a href="#instituicao">Para a instituição</a></li>
-              <li><a href="#agentes">Agentes da escola</a></li>
+              <li><a href="#agentes">Agentes da instituição</a></li>
               <li><a href="#sistema">Como funciona</a></li>
             </ul>
           </div>

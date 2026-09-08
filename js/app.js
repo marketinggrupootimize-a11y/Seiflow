@@ -4,7 +4,8 @@
  * staggered enter, timeline fill, quote ring). Brand from the Seiflow book.
  */
 const CONFIG = {
-  waNumber: "556293481258",
+  waNumberLead: "556291626249", // diagnóstico grátis / ainda não é cliente
+  waNumberClient: "556292084328", // já é cliente
   waText: "Olá! Sou de uma instituição de ensino e quero o diagnóstico de 30 minutos do Seiflow — mapear a fila e o piloto.",
 };
 
@@ -34,14 +35,15 @@ function prefersReduced() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function waUrl(extra = "") {
+function waUrl(number, extra = "") {
   const text = extra ? `${CONFIG.waText} E-mail: ${extra}` : CONFIG.waText;
-  return `https://wa.me/${CONFIG.waNumber}?text=${encodeURIComponent(text)}`;
+  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
 }
 
 function initChrome() {
   $$("[data-wa]").forEach((a) => {
-    a.href = waUrl();
+    const number = a.dataset.wa === "client" ? CONFIG.waNumberClient : CONFIG.waNumberLead;
+    a.href = waUrl(number);
   });
 
   const CONTACT_EMAIL = "comercial@seiflow.com.br";
@@ -69,14 +71,6 @@ function initChrome() {
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 
-  const loginForm = $("#login-form");
-  loginForm?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = $("#login-email")?.value.trim();
-    const status = $("#login-status");
-    if (!email) return;
-    if (status) status.textContent = "O acesso à área da instituição será liberado pela equipe. Fale conosco para receber seu convite.";
-  });
 }
 
 function initNav() {
@@ -483,6 +477,80 @@ function initBlob() {
   });
 }
 
+function initEcoMarquee() {
+  const root = $(".eco-marquee");
+  const track = $(".eco-marquee__track", root || document);
+  const group = $(".eco-marquee__group", root || document);
+  if (!root || !track || !group) return;
+
+  let groupWidth = 0;
+  const measure = () => {
+    groupWidth = group.getBoundingClientRect().width;
+  };
+  measure();
+  window.addEventListener("resize", measure, { passive: true });
+
+  const SPEED = 34; // px per second
+  let pos = 0;
+  let hovering = false;
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartPos = 0;
+  let lastT = 0;
+
+  const wrap = (p) => {
+    if (!groupWidth) return 0;
+    return ((p % groupWidth) + groupWidth) % groupWidth;
+  };
+
+  const render = () => {
+    track.style.transform = `translateX(${-pos}px)`;
+  };
+
+  function frame(t) {
+    if (!lastT) lastT = t;
+    const dt = (t - lastT) / 1000;
+    lastT = t;
+    if (!dragging && !hovering && !prefersReduced()) {
+      pos = wrap(pos + SPEED * dt);
+      render();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  root.addEventListener("pointerenter", () => { hovering = true; });
+  root.addEventListener("pointerleave", () => { hovering = false; });
+
+  root.addEventListener("pointerdown", (e) => {
+    dragging = true;
+    hovering = true;
+    dragStartX = e.clientX;
+    dragStartPos = pos;
+    root.classList.add("is-dragging");
+    root.setPointerCapture(e.pointerId);
+  });
+
+  root.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - dragStartX;
+    pos = wrap(dragStartPos - dx);
+    render();
+  });
+
+  const endDrag = (e) => {
+    if (!dragging) return;
+    dragging = false;
+    root.classList.remove("is-dragging");
+    if (e && e.pointerId !== undefined && root.hasPointerCapture?.(e.pointerId)) {
+      root.releasePointerCapture(e.pointerId);
+    }
+  };
+  root.addEventListener("pointerup", endDrag);
+  root.addEventListener("pointercancel", endDrag);
+
+  requestAnimationFrame(frame);
+}
+
 function initQuotes() {
   const tabs = $$(".quotes__tab");
   const text = $("#quote-text");
@@ -624,6 +692,31 @@ function initAIChat() {
   });
 }
 
+function initSparkles() {
+  const targets = $$("[data-sparkles]");
+  if (!targets.length || prefersReduced()) return;
+
+  const colors = ["#233dff", "#8f6bff"];
+  const SPARKLE_SVG =
+    '<svg viewBox="0 0 21 21" fill="none"><path d="M9.82531 0.843845C10.0553 0.215178 10.9446 0.215178 11.1746 0.843845L11.8618 2.72026C12.4006 4.19229 12.3916 6.39157 13.5 7.5C14.6084 8.60843 16.8077 8.59935 18.2797 9.13822L20.1561 9.82534C20.7858 10.0553 20.7858 10.9447 20.1561 11.1747L18.2797 11.8618C16.8077 12.4007 14.6084 12.3916 13.5 13.5C12.3916 14.6084 12.4006 16.8077 11.8618 18.2798L11.1746 20.1562C10.9446 20.7858 10.0553 20.7858 9.82531 20.1562L9.13819 18.2798C8.59932 16.8077 8.60843 14.6084 7.5 13.5C6.39157 12.3916 4.19225 12.4007 2.72023 11.8618L0.843814 11.1747C0.215148 10.9447 0.215148 10.0553 0.843814 9.82534L2.72023 9.13822C4.19225 8.59935 6.39157 8.60843 7.5 7.5C8.60843 6.39157 8.59932 4.19229 9.13819 2.72026L9.82531 0.843845Z" fill="currentColor"/></svg>';
+
+  targets.forEach((target, i) => {
+    const count = Number(target.dataset.sparklesCount) || 8;
+    for (let n = 0; n < count; n++) {
+      const sparkle = document.createElement("span");
+      sparkle.className = "sparkle";
+      sparkle.innerHTML = SPARKLE_SVG;
+      sparkle.style.left = `${Math.random() * 100}%`;
+      sparkle.style.top = `${Math.random() * 100}%`;
+      sparkle.style.width = sparkle.style.height = `${12 + Math.random() * 10}px`;
+      sparkle.style.color = colors[Math.floor(Math.random() * colors.length)];
+      sparkle.style.setProperty("--sparkle-delay", `${Math.random() * 1.6}s`);
+      sparkle.style.setProperty("--sparkle-scale", `${(0.6 + Math.random() * 0.6).toFixed(2)}`);
+      target.appendChild(sparkle);
+    }
+  });
+}
+
 function initMotion() {
   const gsap = window.gsap;
   const ST = window.ScrollTrigger;
@@ -640,12 +733,14 @@ function boot() {
   initChrome();
   initNav();
   initQuotes();
+  initEcoMarquee();
   initFaq();
   initShot();
   initMotion();
   initImmersiveScroll();
   initBlob();
-  initAIChat();
+  // initAIChat(); // desativado a pedido — reative aqui e no HTML (index.html) quando quiser voltar
+  initSparkles();
 }
 
 if (document.readyState === "loading") {
