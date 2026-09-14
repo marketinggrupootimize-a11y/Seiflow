@@ -2235,6 +2235,15 @@ td:last-child { color: var(--foreground); font-weight: 600; }
   border-radius: 20px;
   padding: 24px;
 }
+a.eco-card {
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s, border-color 0.2s;
+}
+a.eco-card:hover {
+  background: rgb(255 255 255 / 0.07);
+  border-color: rgb(255 255 255 / 0.2);
+}
 .eco-card__logo {
   height: 44px;
   width: auto;

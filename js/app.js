@@ -491,9 +491,11 @@ function initEcoMarquee() {
   window.addEventListener("resize", measure, { passive: true });
 
   const SPEED = 34; // px per second
+  const DRAG_CLICK_THRESHOLD = 6; // px
   let pos = 0;
   let hovering = false;
   let dragging = false;
+  let dragMoved = false;
   let dragStartX = 0;
   let dragStartPos = 0;
   let lastT = 0;
@@ -523,16 +525,23 @@ function initEcoMarquee() {
 
   root.addEventListener("pointerdown", (e) => {
     dragging = true;
+    dragMoved = false;
     hovering = true;
     dragStartX = e.clientX;
     dragStartPos = pos;
     root.classList.add("is-dragging");
-    root.setPointerCapture(e.pointerId);
   });
 
   root.addEventListener("pointermove", (e) => {
     if (!dragging) return;
     const dx = e.clientX - dragStartX;
+    if (!dragMoved && Math.abs(dx) > DRAG_CLICK_THRESHOLD) {
+      dragMoved = true;
+      // Capture only once real dragging is confirmed — capturing on every
+      // pointerdown would redirect the following click (and its target)
+      // away from the card link, breaking plain clicks on the cards.
+      root.setPointerCapture(e.pointerId);
+    }
     pos = wrap(dragStartPos - dx);
     render();
   });
@@ -547,6 +556,14 @@ function initEcoMarquee() {
   };
   root.addEventListener("pointerup", endDrag);
   root.addEventListener("pointercancel", endDrag);
+
+  root.addEventListener("click", (e) => {
+    if (dragMoved) {
+      e.preventDefault();
+      e.stopPropagation();
+      dragMoved = false;
+    }
+  }, true);
 
   requestAnimationFrame(frame);
 }
