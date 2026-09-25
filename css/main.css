@@ -579,7 +579,8 @@ html.dark .icon-moon { display: none; }
   font-size: 13px;
   font-weight: 500;
   box-shadow: 0 12px 28px -16px rgb(0 0 0 / 0.35);
-  animation: chat-hint-in 0.4s var(--ease) 1s backwards, chat-hint-out 0.4s var(--ease) 6s forwards;
+  opacity: 0;
+  animation: chat-hint-cycle 9s ease-in-out 1s infinite;
 }
 html.dark .ai-chat__hint {
   background: #12183a;
@@ -699,13 +700,12 @@ html.dark .ai-chat__hint {
   flex-shrink: 0;
 }
 
-@keyframes chat-hint-in {
-  from { opacity: 0; transform: translateY(50%) translateX(6px); }
-  to { opacity: 1; transform: translateY(50%) translateX(0); }
-}
-@keyframes chat-hint-out {
-  from { opacity: 1; }
-  to { opacity: 0; visibility: hidden; }
+@keyframes chat-hint-cycle {
+  0% { opacity: 0; transform: translateY(50%) translateX(6px); }
+  6% { opacity: 1; transform: translateY(50%) translateX(0); }
+  55% { opacity: 1; transform: translateY(50%) translateX(0); }
+  62% { opacity: 0; transform: translateY(50%) translateX(6px); }
+  100% { opacity: 0; transform: translateY(50%) translateX(6px); }
 }
 @keyframes chat-panel-in {
   from { opacity: 0; transform: translateY(8px) scale(0.98); }
@@ -717,7 +717,7 @@ html.dark .ai-chat__hint {
   .ai-chat__hint { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ai-chat__hint { animation: none; }
+  .ai-chat__hint { animation: none; opacity: 1; transform: none; }
   .ai-chat__panel { animation: none; }
 }
 
