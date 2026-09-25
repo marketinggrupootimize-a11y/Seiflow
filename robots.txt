@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seiflow.com.br/sitemap.xml
