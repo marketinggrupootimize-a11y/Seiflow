@@ -642,73 +642,6 @@ function initShot() {
   if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
 }
 
-// Placeholder de respostas até a integração de IA real ser conectada.
-// Troque `getAIResponse` por uma chamada de API quando o backend estiver pronto.
-function getAIResponse(question) {
-  const q = question.toLowerCase();
-  const canned = [
-    { k: ["nota", "boletim"], a: "As notas e o boletim ficam disponíveis direto pelo WhatsApp, consultando a base oficial da instituição." },
-    { k: ["boleto", "pagamento", "mensalidade", "pix", "inadimpl"], a: "O agente Financeiro consulta situação financeira, emite 2ª via de boleto e orienta pagamento via PIX — inclusive avisando vencimentos antes de você perguntar." },
-    { k: ["matr", "vestibular", "processo seletivo", "curso", "interessad"], a: "O agente Comercial e de Captação conduz do primeiro contato até a matrícula: cursos, valores, processo seletivo e documentação." },
-    { k: ["erp", "integra", "sistema"], a: "A Seiflow se conecta ao ERP da instituição e pode executar processos reais — não só responder — como emitir documentos e consultar dados acadêmicos e financeiros." },
-    { k: ["plano", "preço", "valor", "quanto custa"], a: "A equipe comercial apresenta a proposta conforme o tamanho, as filas e as integrações da sua instituição. Fale conosco para receber um diagnóstico." },
-    { k: ["lgpd", "dado", "segur"], a: "Trabalhamos com isolamento por unidade, papéis de acesso e rastro de uso — a LGPD entra no desenho do piloto desde o primeiro dia." },
-  ];
-  const hit = canned.find((c) => c.k.some((word) => q.includes(word)));
-  return hit
-    ? hit.a
-    : "Essa é uma ótima pergunta. Em breve nossa IA vai responder isso automaticamente — por enquanto, fale com a equipe no WhatsApp para uma resposta completa.";
-}
-
-function initAIChat() {
-  const root = $("#ai-chat");
-  const toggle = $("#ai-chat-toggle");
-  const closeBtn = $("#ai-chat-close");
-  const panel = $("#ai-chat-panel");
-  const hint = $("#ai-chat-hint");
-  const messages = $("#ai-chat-messages");
-  const form = $("#ai-chat-form");
-  const input = $("#ai-chat-input");
-  if (!root || !toggle || !panel || !form || !input) return;
-
-  function addMessage(text, from) {
-    const div = document.createElement("div");
-    div.className = `ai-chat__msg ai-chat__msg--${from}`;
-    div.textContent = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  function open() {
-    root.classList.add("is-open");
-    panel.hidden = false;
-    toggle.setAttribute("aria-expanded", "true");
-    if (hint) hint.style.display = "none";
-    input.focus();
-  }
-
-  function close() {
-    root.classList.remove("is-open");
-    panel.hidden = true;
-    toggle.setAttribute("aria-expanded", "false");
-  }
-
-  toggle.addEventListener("click", () => {
-    if (panel.hidden) open();
-    else close();
-  });
-  closeBtn?.addEventListener("click", close);
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const value = input.value.trim();
-    if (!value) return;
-    addMessage(value, "user");
-    input.value = "";
-    window.setTimeout(() => addMessage(getAIResponse(value), "bot"), 350);
-  });
-}
-
 function initSparkles() {
   const targets = $$("[data-sparkles]");
   if (!targets.length || prefersReduced()) return;
@@ -756,7 +689,6 @@ function boot() {
   initMotion();
   initImmersiveScroll();
   initBlob();
-  // initAIChat(); // desativado a pedido — reative aqui e no HTML (index.html) quando quiser voltar
   initSparkles();
 }
 

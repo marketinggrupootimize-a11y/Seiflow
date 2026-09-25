@@ -104,37 +104,12 @@
     </div>
   </header>
 
-  <!-- Balão de chat com IA desativado a pedido — código preservado para reativar depois.
-       Para reativar: descomente este bloco e a chamada initAIChat() em js/app.js (função boot()).
   <aside class="ai-chat" id="ai-chat">
-    <div class="ai-chat__panel" id="ai-chat-panel" hidden>
-      <div class="ai-chat__head">
-        <div class="ai-chat__head-title">
-          <img class="ai-chat__avatar ai-chat__avatar--head" src="Imagens da landpage/Cara do chat - Mascote.png" alt="" aria-hidden="true">
-          Assistente Seiflow
-        </div>
-        <button type="button" class="ai-chat__close" id="ai-chat-close" aria-label="Fechar chat">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <div class="ai-chat__messages" id="ai-chat-messages" role="log" aria-live="polite">
-        <div class="ai-chat__msg ai-chat__msg--bot">Oi! Sou o assistente de IA do Seiflow. Pergunte sobre notas, boletos, matrícula ou planos.</div>
-      </div>
-      <form class="ai-chat__form" id="ai-chat-form">
-        <label class="sr-only" for="ai-chat-input">Digite sua dúvida</label>
-        <input id="ai-chat-input" type="text" placeholder="Digite sua dúvida..." autocomplete="off">
-        <button type="submit" aria-label="Enviar mensagem">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </button>
-      </form>
-    </div>
-
-    <button type="button" class="ai-chat__toggle" id="ai-chat-toggle" aria-label="Tirar dúvidas com a IA do Seiflow" aria-expanded="false" aria-controls="ai-chat-panel">
-      <span class="ai-chat__hint" id="ai-chat-hint">Tire suas dúvidas com a nossa IA</span>
-      <img class="ai-chat__avatar ai-chat__avatar--toggle" src="Imagens da landpage/Cara do chat - Mascote.png" alt="" aria-hidden="true">
-    </button>
+    <a class="ai-chat__toggle" data-wa href="https://wa.me/556291626249" target="_blank" rel="noopener" aria-label="Fale com a Seiflow pelo WhatsApp">
+      <span class="ai-chat__hint">Fale com a SEIFlow!</span>
+      <img class="ai-chat__avatar ai-chat__avatar--toggle" src="assets/mascot-chat.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy">
+    </a>
   </aside>
-  -->
 
   <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
     <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>

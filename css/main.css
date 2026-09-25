@@ -541,6 +541,7 @@ html.dark .icon-moon { display: none; }
   pointer-events: auto;
   border: 0;
   cursor: pointer;
+  text-decoration: none;
   width: 56px;
   height: 56px;
   border-radius: 999px;
